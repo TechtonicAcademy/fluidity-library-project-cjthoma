@@ -1,3 +1,6 @@
+assets/styles/icons
+assets/styles/images
+
 .env
 .DS_Store 
 dist/
