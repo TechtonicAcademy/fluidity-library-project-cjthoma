@@ -67,7 +67,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 350px;
-    background: url("./images/pexels-janko-ferlic-590493.jpg");
+    background: url("/src/assets/images/pexels-janko-ferlic-590493.jpg");
     background-size: cover;
     color: $text;
     text-align: center;
@@ -180,7 +180,7 @@ button {
 
         &__menuBars {
             display: block;
-            background: url("./icons/menu_bars.png");
+            background: url("/src/assets/icons/menu_bars.png");
             background-size: contain;
             filter: invert(100%);
             width: 50px;

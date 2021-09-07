@@ -85,7 +85,8 @@ body {
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
-        width: 1000px;
+        width: 80%;
+        max-width: 1000px;
         height: 675px;
         padding: 25px 0;
         border: 2px rgba($color: #000000, $alpha: 0.25) solid;
@@ -142,8 +143,6 @@ body {
             background: royalblue;
         } 
     }
-
-
 }
 
 button {
@@ -198,6 +197,16 @@ button {
     }
 } 
 
+@media only screen and (max-width: 705px) { // med desktop sizing... anything less than 1024px gets these styles
+    .main {
+        &__container {
+            height: 100%;
+            overflow: unset;
+            overflow-x: visible;
+        }
+    }
+} 
+
 @media only screen and (max-width: 480px) { // mobile sizing... anything less than 480px gets these styles
     .navbar {
         
@@ -218,7 +227,7 @@ button {
 
         &__menuBars {
             display: block;
-            background: url("./icons/menu_bars.png");
+            background: url("/src/assets/icons/menu_bars.png");
             background-size: contain;
             filter: invert(100%);
             width: 50px;
@@ -231,26 +240,9 @@ button {
         }
     }
 
-    .hero {
-        
-        &__title {
-            font-size: 45px;
-        }
-    
-        &__title span {
-            font-size: 12px;
-        }
-    }
-
     .main {
-    
         &__title {
-            padding-top: 10px;
-            font-size: 25px;
-        }
-    
-        p { // lorem ipsum text
-            font-size: 12px;
+            font-size: 28px;
         }
     }
 } 
