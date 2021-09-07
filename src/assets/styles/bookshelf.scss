@@ -197,6 +197,16 @@ button {
     }
 } 
 
+@media only screen and (max-width: 705px) { // med desktop sizing... anything less than 1024px gets these styles
+    .main {
+        &__container {
+            height: 100%;
+            overflow: unset;
+            overflow-x: visible;
+        }
+    }
+} 
+
 @media only screen and (max-width: 480px) { // mobile sizing... anything less than 480px gets these styles
     .navbar {
         
@@ -231,15 +241,8 @@ button {
     }
 
     .main {
-
         &__title {
             font-size: 28px;
-        }
-
-        &__container {
-            height: 100%;
-            overflow: unset;
-            overflow-x: visible;
         }
     }
 } 
