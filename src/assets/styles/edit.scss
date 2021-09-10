@@ -226,7 +226,6 @@ button {
     }
 
     .main {
-    
         &__container {
     
             &__input {
@@ -244,7 +243,6 @@ button {
     
                 input, textarea {
                     width: 310px;
-                    resize: none;
                 }
     
                 &--synopsis {
@@ -259,9 +257,6 @@ button {
         }
     
         &__wrapper { // published & pages wrapper
-            display: flex;
-            flex-direction: row;
-    
             input, textarea {
                 width: 100px;
             }
