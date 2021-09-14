@@ -119,12 +119,10 @@ body {
             margin-left: 50px;
             bottom: 20px;
 
-            img {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: 170px;
+            
+            &__image {
                 height: 235px;
+                width: 170px;
             }
 
             button {
@@ -335,12 +333,9 @@ button {
                     width: 100%;
                     padding: 50px 0;
 
-                    img {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        width: 170px;
+                    &__image {
                         height: 235px;
+                        width: 170px;
                     }
 
                     button {
