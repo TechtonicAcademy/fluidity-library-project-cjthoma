@@ -119,13 +119,12 @@ body {
             margin-left: 50px;
             bottom: 20px;
 
-            div {
+            img {
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 width: 170px;
                 height: 235px;
-                background: #383636;
             }
 
             button {
@@ -335,6 +334,14 @@ button {
                     align-items: center;
                     width: 100%;
                     padding: 50px 0;
+
+                    img {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 170px;
+                        height: 235px;
+                    }
 
                     button {
                         width: 175px;
