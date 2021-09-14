@@ -119,12 +119,13 @@ body {
             margin-left: 50px;
             bottom: 20px;
 
-            img {
+            div {
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 width: 170px;
                 height: 235px;
+                background: #383636;
             }
 
             button {
@@ -168,16 +169,12 @@ button {
     border-radius: 5px;
     border-color: transparent;
     margin: 10px 0;
+
 }
 
 .button--alt {
     color: white;
     background: #383636;
-}
-
-.button--delete {
-    color: white;
-    background: crimson;
 }
 
 .footer {
@@ -334,14 +331,6 @@ button {
                     align-items: center;
                     width: 100%;
                     padding: 50px 0;
-
-                    img {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        width: 170px;
-                        height: 235px;
-                    }
 
                     button {
                         width: 175px;

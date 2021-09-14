@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Library Project - Edit</title>
-    <link rel="stylesheet" href="./assets/styles/edit.scss" />
+    <title>Library Project</title>
+    <link rel="stylesheet" href="./assets/styles/add.scss" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -24,39 +24,39 @@
     </nav>
 
     <section class="main">
-        <h1 class="main__title">Edit Book</h1>
+        <h1 class="main__title">Add Book</h1>
         <div class="main__container">
 
             <div>
                 <div class="main__container__input">
                     <h3>Title</h3>
-                    <input type="text" placeholder="Ender's Game">
+                    <input type="text" placeholder="Title...">
                 </div>
     
                 <div class="main__container__input">
                     <h3>Author</h3>
-                    <input type="text" placeholder="Orson Scott">
+                    <input type="text" placeholder="Author...">
                 </div>
 
                 <div class="main__container__addimage main__container__addimage--mobile">
-                    <img src="./assets/images/enders_game_cover.jpg"></img>
-                    <button>Change Image</button>
+                    <div>Add Image</div>
+                    <button>Add Image</button>
                 </div>
     
                 <div class="main__container__input main__container__input--synopsis">
                     <h3>Synopsis</h3>
-                    <textarea resize="false" placeholder="In the future, humanity has mastered interplanetary spaceflight and as they explore the galaxy, they encounter an insect-like alien race called the Formics. After discovering a Formic base on asteroid Eros, war breaks out between the humans and Formics. The humans achieve a narrow victory, but fearing future threats of a Formic invasion, create the International Fleet (I.F.) and train gifted children to become commanders at their orbiting Battle School. "></textarea>
+                    <textarea resize="false"></textarea>
                 </div>
 
                 <div class="main__wrapper">
                     <div class="main__container__input">
                         <h3>Published</h3>
-                        <input type="date" placeholder="Choose a Date">
+                        <input type="date">
                     </div>
         
                     <div class="main__container__input">
                         <h3>Pages</h3>
-                        <input type="number" placeholder="324">
+                        <input type="number">
                     </div>
                 </div>
     
@@ -73,15 +73,14 @@
             </div>
 
             <div class="main__container__addimage">
-                <img src="./assets/images/enders_game_cover.jpg"></img>
-                <button>Change Image</button>
+                <div>Add Image</div>
+                <button>Add Image</button>
             </div>
 
         </div>
         <div class="main__edit">
-            <button>Submit</button>
+            <button>Add Book</button>
             <button class="button--alt">Cancel</button>
-            <button class="button--delete">Delete Book</button>
         </div>
     </section>
 
