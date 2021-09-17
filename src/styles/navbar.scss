@@ -16,7 +16,7 @@ $text: white;
   white-space: nowrap;
   
   &__title {
-      width: 30%;
+      width: 550px;
       text-align: left;
       font-size: 20px;
       padding-left: 20px;
@@ -29,6 +29,10 @@ $text: white;
       text-align: center;
       padding: 0 10px;
       color: grey;
+
+      &--selected {
+        color: white;
+      }
   }
 
   &__menuBars {
