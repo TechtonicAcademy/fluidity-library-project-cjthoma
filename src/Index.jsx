@@ -1,4 +1,10 @@
 import { render } from 'react-dom';
 import App from './App';
+import ErrorBoundary from './ErrorBoundary';
 
-render(<App />, document.getElementById('root'));
+render(
+  <ErrorBoundary>
+    <App />
+  </ErrorBoundary>,
+  document.getElementById('root')
+);
