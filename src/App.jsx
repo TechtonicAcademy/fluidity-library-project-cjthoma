@@ -5,12 +5,13 @@ import Details from './pages/Details';
 import NotFound from './pages/NotFound';
 
 import Header from './components/Header';
+import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 
 const App = () => {
   return (
     <Router>
-      <Header />
+      <NavBar />
       <Switch>
         <Route exact path="/" component={BookShelf} />
         <Route path="/bookshelf" component={BookShelf} />
