@@ -16,7 +16,7 @@ const AddBook = () => {
             <input type="text" placeholder="Author..." />
           </div>
 
-          <div className="main__container__addimage main__container__addimage--mobile">
+          <div className="main__container__addimage--mobile">
             <div>Add Image</div>
             <button type="submit" value="Add Image">
               Add Image
