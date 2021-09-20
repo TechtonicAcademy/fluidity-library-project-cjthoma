@@ -1,18 +1,12 @@
-/* VARIABLES */
-$background: black;
-$primary: violet;
-$secondary: slategrey;
-$text: white;
+@use './variables.scss'; 
 
-
-/* SCSS */
 .navbar {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 70px;
-  background-color: $background;
-  color: $text;
+  background-color: variables.$background;
+  color: variables.$text;
   white-space: nowrap;
   
   &__title {
@@ -29,9 +23,10 @@ $text: white;
       text-align: center;
       padding: 0 10px;
       color: grey;
+      transition: color 1s ease;
 
       &--selected {
-        color: white;
+        color: variables.$primary;
       }
   }
 
@@ -42,16 +37,16 @@ $text: white;
   &__searchbar {
       display: flex;
       justify-content: right;
+      align-items: center;
 
       padding: 0 20px;
 
       input {
-          width: 80%;
-      }
-
-      button {
-          width: 50px;
-          margin: 0;
+        width: 80%;
       }
   }
+}
+
+.navbar__searchbar--mobile {
+  display: none;
 }
