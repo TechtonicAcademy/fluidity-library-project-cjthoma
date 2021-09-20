@@ -1,0 +1,57 @@
+/* VARIABLES */
+$background: black;
+$primary: violet;
+$secondary: slategrey;
+$text: white;
+
+
+/* SCSS */
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+  background-color: $background;
+  color: $text;
+  white-space: nowrap;
+  
+  &__title {
+      width: 550px;
+      text-align: left;
+      font-size: 20px;
+      padding-left: 20px;
+  }
+
+  &__link { // nav bar li
+      display: inline;
+      text-decoration: none;
+      width: 33%;
+      text-align: center;
+      padding: 0 10px;
+      color: grey;
+
+      &--selected {
+        color: white;
+      }
+  }
+
+  &__menuBars {
+      display: none;
+  }
+
+  &__searchbar {
+      display: flex;
+      justify-content: right;
+
+      padding: 0 20px;
+
+      input {
+          width: 80%;
+      }
+
+      button {
+          width: 50px;
+          margin: 0;
+      }
+  }
+}
