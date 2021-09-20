@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Home from './pages/Home';
 import BookShelf from './pages/BookShelf';
 import AddBook from './pages/AddBook';
 import Details from './pages/Details';
@@ -13,7 +14,7 @@ const App = () => {
       <div>
         <NavBar />
         <Switch>
-          <Route exact path="/" component={BookShelf} />
+          <Route exact path="/" component={Home} />
           <Route path="/bookshelf" component={BookShelf} />
           <Route path={['/details', '/details/:id']} component={Details} />
           <Route path="/add" component={AddBook} />

@@ -12,7 +12,7 @@ const BookShelf = () => {
 
   for (let i = 0; i < 9; i += 1) {
     books.push(
-      <div className="main__container__card">
+      <div key={`${i}_${testBook.title}`} className="main__container__card">
         <img src={testBook.image} alt={testBook.alt} />
         <h3>{testBook.title}</h3>
         <p>{testBook.author}</p>

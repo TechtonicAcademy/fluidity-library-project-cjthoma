@@ -1,0 +1,75 @@
+@use './variables.scss';
+
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 450px;
+    background: url("/src/assets/images/pexels-janko-ferlic-590493.jpg");
+    background-size: cover;
+    color: variables.$text;
+    text-align: center;
+    text-shadow: 2px 2px 2px black;
+    box-shadow: inset 0px 2px 2px black, inset 0px -2px 2px black;
+    
+    &__title {
+        font-size: 50px;
+
+    }
+
+    &__title span {
+        font-size: 20px;
+        display: block;
+
+    }
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 40px;
+    // background-color: variables.$background;
+    color: variables.$background;
+
+    &__title {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 35px;
+        font-weight: 300;
+    }
+
+    p { // lorem ipsum text
+        width: 80%;
+        font-size: 15px;
+    }
+}
+
+@media only screen and (max-width: 480px) { // mobile sizing... anything less than 480px gets these styles
+  .hero {
+    height: 250px;
+    
+    &__title {
+        font-size: 40px;
+
+    }
+
+    &__title span {
+        font-size: 15px;
+        display: block;
+
+    }
+  }
+
+  .main {
+    &__title {
+        font-size: 30px;
+    }
+
+    p { // lorem ipsum text
+        width: 80%;
+        font-size: 12px;
+    }
+}
+} 

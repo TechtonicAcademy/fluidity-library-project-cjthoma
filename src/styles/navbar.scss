@@ -23,7 +23,7 @@
       text-align: center;
       padding: 0 10px;
       color: grey;
-      transition: color 1s ease;
+      transition: color 0.5s ease;
 
       &--selected {
         color: variables.$primary;
@@ -43,10 +43,61 @@
 
       input {
         width: 80%;
+        height: 30px;
       }
+
+      button {
+        width: 50px;
+      }
+  }
+
+  &__menu { // mobile navbar menu
+    display: none;
   }
 }
 
 .navbar__searchbar--mobile {
   display: none;
 }
+
+
+// -- !Media Queries - //
+
+// Lg-desktop 1025px - 1200px
+// Md-laptop 769px - 1024px
+// mobile  375px - 480px
+@media only screen and (max-width: 1024px) { // med desktop sizing... anything less than 1024px gets these styles
+    .navbar {
+        &__link { // nav bar li
+            font-size: 13px;
+        }
+    }
+} 
+
+@media only screen and (max-width: 480px) { // mobile sizing... anything less than 480px gets these styles
+    .navbar {
+        &__title {
+            font-size: 15px;
+        }
+    
+        &__link { // nav bar li
+            display: none;
+        }
+    
+        &__searchbar {
+            display: none;
+            // width: 20%;
+        }
+
+        &__menu { // mobile navbar menu
+          display: block;
+          background: url("/src/assets/icons/menu_bars.png");
+          background-repeat: no-repeat;
+          background-size: contain;
+          filter: invert(100%);
+          width: 50px;
+          height: 35px;
+          padding-right: 20px;
+        }
+    }
+} 

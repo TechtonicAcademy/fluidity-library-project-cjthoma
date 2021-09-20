@@ -16,8 +16,8 @@ const NavBar = () => {
       <NavLink className={`navbar__link ${location === '/' ? 'navbar__link--selected' : '' }`} to="/">
         Home
       </NavLink>
-      <NavLink className={`navbar__link ${location.includes('/details') ? 'navbar__link--selected' : '' }`} to="/details">
-        Book Details
+      <NavLink className={`navbar__link ${location.includes('/bookshelf') ? 'navbar__link--selected' : '' }`} to="/bookshelf">
+        Book Shelf
       </NavLink>
       <NavLink className={`navbar__link ${location === '/add' ? 'navbar__link--selected' : '' }`} to="/add">
         Add Book
@@ -28,6 +28,8 @@ const NavBar = () => {
           Go
         </button>
       </div>
+      {/* MOBILE MENU */}
+      <div className="navbar__menu" />
     </nav>
   );
 };

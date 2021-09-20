@@ -1,4 +1,7 @@
 @use './variables.scss';
+body {
+    margin: 0;
+}
 
 button {
     height: 40px;
@@ -9,216 +12,16 @@ button {
     margin: 10px 0;
 }
 
-body {
-    margin: 0;
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 145px;
+    background: variables.$background;
+    color: variables.$text;
+    border: 2px grey solid;
+    border-radius: 5px;
+    margin: 10px 0;
+    text-decoration: none;
 }
-
-// .navbar {
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     height: 70px;
-//     background-color: $background;
-//     color: $text;
-    
-//     &__title {
-//         width: 30%;
-//         text-align: left;
-//         font-size: 40px;
-//         padding-left: 20px;
-//     }
-
-//     &__container { // nav bar ul container
-//         display: flex;
-//         justify-content: center;
-//         width: 40%;
-//         padding: 0 20px;
-//     }
-
-//     &__item { // nav bar li
-//         display: inline;
-//         width: 33%;
-//         text-align: center;
-//         padding: 0 10px;
-//         color: grey;
-
-//         &--selected{
-//             color: white;
-//         }
-//     }
-
-//     &__menuBars {
-//         display: none;
-//     }
-
-//     &__searchbar {
-//         display: flex;
-//         justify-content: right;
-
-//         padding: 0 20px;
-
-//         input {
-//             width: 80%;
-//         }
-
-//         button {
-//             width: 50px;
-//             margin: 0;
-//         }
-//     }
-// }
-
-// .hero {
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     height: 350px;
-//     background: url("/src/assets/images/pexels-janko-ferlic-590493.jpg");
-//     background-size: cover;
-//     color: $text;
-//     text-align: center;
-//     text-shadow: 2px 2px 2px black;
-//     box-shadow: inset 0px 2px 2px black, inset 0px -2px 2px black;
-    
-//     &__title {
-//         font-size: 50px;
-
-//     }
-
-//     &__title span {
-//         font-size: 20px;
-//         display: block;
-
-//     }
-// }
-
-// .main {
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-items: center;
-//     padding-bottom: 40px;
-//     background-color: $background;
-//     color: $text;
-
-//     &__title {
-//         text-align: center;
-//         margin-bottom: 20px;
-//         font-size: 35px;
-//         font-weight: 300;
-//     }
-
-//     p { // lorem ipsum text
-//         width: 80%;
-//         font-size: 15px;
-//     }
-// }
-
-// button {
-//     height: 40px;
-//     width: 145px;
-//     background: #1e1e1e;
-//     color: white;
-//     border-radius: 5px;
-//     margin: 10px 0;
-// }
-
-// .footer {
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     background-color: rgba($color: #000000, $alpha: 0.75);
-//     margin: 0;
-//     padding: 0;
-
-//     box-shadow: 0px -2px 5px rgba($color: #000000, $alpha: 0.5);
-
-//     &__title {
-//         color: $text;
-//     }
-// }
-
-// // -- !Media Queries - //
-
-// // Lg-desktop 1025px - 1200px
-// // Md-laptop 769px - 1024px
-// // mobile  375px - 480px
-// @media only screen and (max-width: 1024px) { // med desktop sizing... anything less than 1024px gets these styles
-//     .navbar {
-        
-//         &__title {
-//             font-size: 25px;
-//             white-space: nowrap;
-//         }
-    
-//         &__container { // nav bar ul container
-//             width: 35%;
-//         }
-    
-//         &__item { // nav bar li
-//             font-size: 13px;
-//             white-space: nowrap;
-//         }
-    
-//         &__searchbar {
-
-//         }
-//     }
-// } 
-
-// @media only screen and (max-width: 480px) { // mobile sizing... anything less than 480px gets these styles
-//     .navbar {
-        
-//         &__title {
-//             width: 50%;
-//             font-size: 20px;
-//         }
-    
-//         &__container { // nav bar ul container
-//             justify-content: right;
-//             width: 50%;
-//         }
-    
-//         &__item { // nav bar li
-//             display: none;
-//         }
-
-
-//         &__menuBars {
-//             display: block;
-//             background: url("/src/assets/icons/menu_bars.png");
-//             background-size: contain;
-//             filter: invert(100%);
-//             width: 50px;
-//             height: 50px;
-//         }
-    
-//         &__searchbar {
-//             display: none;
-//             // width: 20%;
-//         }
-//     }
-
-//     .hero {
-        
-//         &__title {
-//             font-size: 45px;
-//         }
-    
-//         &__title span {
-//             font-size: 12px;
-//         }
-//     }
-
-//     .main {
-    
-//         &__title {
-//             padding-top: 10px;
-//             font-size: 25px;
-//         }
-    
-//         p { // lorem ipsum text
-//             font-size: 12px;
-//         }
-//     }
-// } 
