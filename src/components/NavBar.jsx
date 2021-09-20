@@ -8,7 +8,7 @@ const NavBar = () => {
   let title = 'The Library';
   if (location === '/add') title = 'Expand Our Collection';
   if (location === '/not-found') title = '404 Resource Not Found...';
-  if (location.includes('/details')) title = 'BOOOOOOK!';
+  if (location === '/bookshelf' || location.includes('/details')) title = 'BOOOOOOK!';
 
   return (
     <nav className="navbar">
