@@ -17,7 +17,7 @@ const NavBar = () => {
         Home
       </NavLink>
       <NavLink className={`navbar__link ${location.includes('/bookshelf') ? 'navbar__link--selected' : '' }`} to="/bookshelf">
-        Book Shelf
+        Bookshelf
       </NavLink>
       <NavLink className={`navbar__link ${location === '/add' ? 'navbar__link--selected' : '' }`} to="/add">
         Add Book
