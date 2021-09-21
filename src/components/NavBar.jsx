@@ -8,7 +8,7 @@ const NavBar = () => {
   let title = 'The Library';
   if (location === '/add') title = 'Expand Our Collection';
   if (location === '/not-found') title = '404 Resource Not Found...';
-  if (location.includes('/details')) title = 'BOOOOOOK!';
+  if (location === '/bookshelf' || location.includes('/details')) title = 'BOOOOOOK!';
 
   return (
     <nav className="navbar">
@@ -17,7 +17,7 @@ const NavBar = () => {
         Home
       </NavLink>
       <NavLink className={`navbar__link ${location.includes('/bookshelf') ? 'navbar__link--selected' : '' }`} to="/bookshelf">
-        Book Shelf
+        Bookshelf
       </NavLink>
       <NavLink className={`navbar__link ${location === '/add' ? 'navbar__link--selected' : '' }`} to="/add">
         Add Book
