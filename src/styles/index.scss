@@ -24,9 +24,15 @@ button {
     border-radius: 5px;
     margin: 10px 0;
     text-decoration: none;
+    box-shadow: 5px 5px 5px black;
 }
 
 .button--alt {
     color: white;
     background: #383636;
+}
+
+.button--delete {
+    color: white;
+    background: crimson;
 }

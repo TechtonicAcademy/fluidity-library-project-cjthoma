@@ -1,10 +1,11 @@
+import { NavLink } from 'react-router-dom';
 import '../styles/details.scss';
 
 const Details = () => {
   return (
-    <section className="main">
-      <div className="main__container">
-        <div className="main__bookcover">
+    <section className="details">
+      <div className="details__container">
+        <div className="details__bookcover">
           {/* <img src="./assets/images/enders_game_cover.jpg" alt="book_cover" /> */}
           <img />
           <div>
@@ -16,8 +17,8 @@ const Details = () => {
           </div>
         </div>
 
-        <div className="main__details">
-          <h2 className="main__details__title">Ender's Game</h2>
+        <div className="details__info">
+          <h2 className="details__info__title">Ender's Game</h2>
           <h3>Orson Scott</h3>
           <p>
             <em>Published: January 1985</em>
@@ -36,13 +37,13 @@ const Details = () => {
           </p>
         </div>
       </div>
-      <div className="main__edit">
-        <button type="submit" value="Add Image">
-          Edit This Book
-        </button>
-        <button className="button--alt" type="submit" value="Add Image">
+      <div className="details__edit">
+        <NavLink className="button" to="/edit">
+          Edit Book
+        </NavLink>
+        <NavLink className="button" to="/bookshelf">
           Back to Shelf
-        </button>
+        </NavLink>
       </div>
     </section>
   );

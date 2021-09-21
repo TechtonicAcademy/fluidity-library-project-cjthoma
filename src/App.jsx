@@ -1,8 +1,9 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import BookShelf from './pages/BookShelf';
-import AddBook from './pages/AddBook';
 import Details from './pages/Details';
+import AddBook from './pages/AddBook';
+import Edit from './pages/Edit';
 import NotFound from './pages/NotFound';
 
 import NavBar from './components/NavBar';
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/bookshelf" component={BookShelf} />
           <Route path={['/details', '/details/:id']} component={Details} />
           <Route path="/add" component={AddBook} />
+          <Route path="/edit" component={Edit} />
           <Route path="/*" component={NotFound} />
         </Switch>
         <Footer />
