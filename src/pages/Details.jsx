@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import '../styles/details.scss';
 
 const Details = () => {
@@ -37,12 +38,12 @@ const Details = () => {
         </div>
       </div>
       <div className="details__edit">
-        <button type="submit" value="Add Image">
-          Edit This Book
-        </button>
-        <button className="button--alt" type="submit" value="Add Image">
+        <NavLink className="button" to="/edit">
+          Edit Book
+        </NavLink>
+        <NavLink className="button" to="/bookshelf">
           Back to Shelf
-        </button>
+        </NavLink>
       </div>
     </section>
   );
