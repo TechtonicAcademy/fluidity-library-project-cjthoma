@@ -12,7 +12,7 @@ const BookShelf = () => {
 
   for (let i = 0; i < 9; i += 1) {
     books.push(
-      <div key={`${i}_${testBook.title}`} className="main__container__card">
+      <div key={`${i}_${testBook.title}`} className="bookshelf__container__card">
         <img src={testBook.image} alt={testBook.alt} />
         <h3>{testBook.title}</h3>
         <p>{testBook.author}</p>
@@ -21,15 +21,15 @@ const BookShelf = () => {
   }
 
   return (
-    <section className="main">
+    <section className="bookshelf">
       <div className="navbar__searchbar--mobile">
         <input type="text" placeholder="Search.." />
         <button type="submit" value="Go">
           Go
         </button>
       </div>
-      <h3 className="main__title">Knowledge is Power!</h3>
-      <section className="main__container">{books}</section>
+      <h3 className="bookshelf__title">Knowledge is Power!</h3>
+      <section className="bookshelf__container">{books}</section>
     </section>
   );
 };

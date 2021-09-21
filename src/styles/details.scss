@@ -1,6 +1,6 @@
 @use './variables.scss';
 
-.main {
+.details {
     display: flex;
     flex-direction: column;
     padding-bottom: 40px;
@@ -36,7 +36,7 @@
         }
     }
 
-    &__details {
+    &__info {
         position: relative;
         bottom: 40px;
         width: 50%;
@@ -74,7 +74,7 @@
 // Md-laptop 769px - 1024px
 // mobile  375px - 480px
 @media only screen and (max-width: 1024px) { // med desktop sizing... anything less than 1024px gets these styles
-    .main {
+    .details {
         &__bookcover {
             img {
                 height: 350px;
@@ -82,7 +82,7 @@
             }
         }
     
-        &__details {
+        &__info {
             padding-left: 60px;
             &__title { // title
                 font-size: 22px;
@@ -96,7 +96,7 @@
 } 
 
 @media only screen and (max-width: 480px) { // mobile sizing... anything less than 480px gets these styles
-    .main {
+    .details {
         display: flex;
         padding-bottom: 40px;
         padding: 50px 0;
@@ -120,7 +120,7 @@
             }
         }
     
-        &__details {
+        &__info {
             position: relative;
             display: flex;
             flex-direction: column;

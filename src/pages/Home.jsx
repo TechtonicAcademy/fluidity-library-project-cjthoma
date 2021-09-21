@@ -10,8 +10,8 @@ const Home = () => {
         </h1>
       </section>
 
-      <section className="main">
-        <h3 className="main__title">Welcome to the Library</h3>
+      <section className="home">
+        <h3 className="home__title">Welcome to the Library</h3>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ac
           justo pharetra, venenatis elit eget, tempor est. Nunc bibendum sit
