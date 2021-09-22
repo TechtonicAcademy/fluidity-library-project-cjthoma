@@ -1,0 +1,31 @@
+@use './variables.scss';
+
+.book {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 300px;
+  width: 200px;
+  background-color: rgba($color: #000000, $alpha: 0.25);
+  border: 5px variables.$primary solid;
+  margin: 20px 40px;
+  box-shadow: 5px 5px variables.$background;
+  text-decoration: none;
+  color: variables.$background;
+
+  img {
+      height: 60%;
+      width: 70%;
+      margin: 20px;
+  }
+
+  h3 { // book title
+      margin: 10px 0 0 0;
+      font-size: 22px;
+  }
+
+  p { // book author
+      margin: 10px 0 0 0;
+      font-size: 15px;
+  }
+}
