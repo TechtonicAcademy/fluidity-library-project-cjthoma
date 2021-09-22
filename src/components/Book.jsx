@@ -16,7 +16,7 @@ const Book = ({ bookData }) => {
 
 export default Book;
 
-function getImage (title) {
+function getImage(title) {
   const sourceMap = {
     "Ender's Game"    : () => { return require('../assets/images/enders_game_cover.jpg') },
     "The Martian"     : () => { return require('../assets/images/the_martian_cover.jpg') },
@@ -24,6 +24,6 @@ function getImage (title) {
     "default"         : () => { return require('../assets/images/enders_game_cover.jpg') },
   };
 
-  if(!sourceMap[title]) return sourceMap['default']();
+  if (!sourceMap[title]) return sourceMap.default();
   return sourceMap[title]();
 }

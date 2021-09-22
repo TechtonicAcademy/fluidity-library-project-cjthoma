@@ -1,6 +1,69 @@
+import { useState, useRef, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import { addBook } from '../utils/API';
+
 import '../styles/addbook.scss';
 
 const AddBook = () => {
+  const history = useHistory();
+  const [bookData, setBookData] = useState({ rating: 0 });
+
+  console.log('book data:', bookData);
+
+  const titleInputRef = useRef();
+  const authorInputRef = useRef();
+  const synopsisInputRef = useRef();
+  const publishedInputRef = useRef();
+  const pagesInputRef = useRef();
+
+  const handleSubmit = () => {
+    const title = titleInputRef.current.value;
+    const author = authorInputRef.current.value;
+    const synopsis = synopsisInputRef.current.value;
+    const published = publishedInputRef.current.value;
+    const pages = pagesInputRef.current.value;
+    const { rating } = bookData;
+
+    if (!title || !author || !synopsis || !published || !pages || rating <= 0) {
+      return alert('Invalid Submition. Please fill in all fields.');
+    }
+
+    addBook({ title, author, synopsis, published, pages, rating })
+      .then(() => history.push('/'))
+      .catch((error) => {
+        console.log('An error has occured.', error);
+        throw error;
+      });
+
+    return setBookData((prevState) => {
+      return {
+        ...prevState,
+        title,
+        author,
+        synopsis,
+        published,
+        pages,
+        rating,
+      };
+    });
+  };
+
+  const handleRating = (target) => {
+    setBookData((prevState) => ({ ...prevState, rating: target }));
+  };
+
+  const ratingDisplay = [];
+  for (let i = 0; i < 5; i += 1) {
+    ratingDisplay.push(
+      <span
+        className={`fa fa-star ${
+          bookData.rating >= i + 1 ? 'fa-star--checked' : ''
+        }`}
+        onClick={() => handleRating(i + 1)}
+      />
+    );
+  }
+
   return (
     <section className="addbook">
       <h1 className="addbook__title">Add Book</h1>
@@ -8,12 +71,12 @@ const AddBook = () => {
         <div>
           <div className="addbook__container__input">
             <h3>Title</h3>
-            <input type="text" placeholder="Title..." />
+            <input ref={titleInputRef} type="text" placeholder="Title..." />
           </div>
 
           <div className="addbook__container__input">
             <h3>Author</h3>
-            <input type="text" placeholder="Author..." />
+            <input ref={authorInputRef} type="text" placeholder="Author..." />
           </div>
 
           <div className="addbook__container__addimage--mobile">
@@ -25,29 +88,25 @@ const AddBook = () => {
 
           <div className="addbook__container__input addbook__container__input--synopsis">
             <h3>Synopsis</h3>
-            <textarea resize="false" />
+            <textarea ref={synopsisInputRef} resize="false" />
           </div>
 
           <div className="addbook__wrapper">
             <div className="addbook__container__input">
               <h3>Published</h3>
-              <input type="date" />
+              <input ref={publishedInputRef} type="date" />
             </div>
 
             <div className="addbook__container__input">
               <h3>Pages</h3>
-              <input type="number" />
+              <input ref={pagesInputRef} type="number" />
             </div>
           </div>
 
           <div className="addbook__container__input">
             <h3>Rating</h3>
             <div>
-              <span className="fa fa-star fa-star--checked" />
-              <span className="fa fa-star fa-star--checked" />
-              <span className="fa fa-star fa-star--checked" />
-              <span className="fa fa-star" />
-              <span className="fa fa-star" />
+              {ratingDisplay}
             </div>
           </div>
         </div>
@@ -60,7 +119,7 @@ const AddBook = () => {
         </div>
       </div>
       <div className="addbook__edit">
-        <button type="submit" value="Add Book">
+        <button type="submit" value="Add Book" onClick={() => handleSubmit()}>
           Add Book
         </button>
         <button className="button--alt" type="submit" value="Cancel">
