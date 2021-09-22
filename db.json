@@ -1,20 +1,31 @@
 {
   "books": [
     {
-      "title": "test",
-      "author": "test",
-      "synopsis": "test",
-      "pages": "3",
-      "published": "2021-09-16",
-      "id": 1
-    },
-    {
       "title": "Ender's Game",
       "author": "Orson Scott",
       "synopsis": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-      "pages": "347",
-      "published": "2021-09-16",
+      "pages": "324",
+      "published": "1985-01-01",
+      "image": "enders_game_cover",
+      "id": 1
+    },
+    {
+      "title": "The Martian",
+      "author": "Andy Weir",
+      "synopsis": "In 2035, the crew of NASA's Ares 3 mission have arrived at Acidalia Planitia for a planned month-long stay on Mars. After only six sols, an intense dust and wind storm threatens to topple their Mars Ascent Vehicle (MAV), which would trap them on the planet. During the hurried evacuation, an antenna tears loose and impales astronaut Mark Watney, a botanist and engineer, also disabling his spacesuit radio. He is flung out of sight by the wind and presumed dead. As the MAV teeters dangerously, mission commander Melissa Lewis has no choice but to take off without completing the search for Watney.",
+      "pages": "369",
+      "published": "2011-01-01",
+      "image": "enders_game_cover",
       "id": 2
+    },
+    {
+      "title": "Ready Player One",
+      "author": "Earnest Cline",
+      "synopsis": "In the year 2045, climate change, war and poverty have ruined most of Earth’s societies. Most people find escape and relief in the OASIS, a multiplayer online game with thousands of different locations, including games, online shopping, and even a thriving school system. Most people in the world have OASIS accounts, as there are no recurring fees and it offers an escape from the real world. The creator of the OASIS, James Halliday, has left a contest that will transfer the ownership of the OASIS and its parent company to whoever finds his Easter egg. Since the company is worth billions of dollars, many users have been trying to figure out the clues that lead to Halliday’s Easter egg for years.",
+      "pages": "374",
+      "published": "2011-08-11",
+      "image": "ready_player_one_cover",
+      "id": 3
     }
   ]
 }

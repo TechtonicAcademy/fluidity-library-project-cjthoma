@@ -12,6 +12,7 @@
   box-shadow: 5px 5px variables.$background;
   text-decoration: none;
   color: variables.$background;
+  transition: all 0.5s ease;
 
   img {
       height: 60%;
@@ -29,3 +30,27 @@
       font-size: 15px;
   }
 }
+
+@media only screen and (max-width: 1024px) { // med desktop sizing... anything less than 1024px gets these styles
+  .book {
+    height: 225px;
+    width: 150px;
+
+    h3 { // book title
+      margin: 5px 0 0 0;
+      font-size: 18px;
+    }
+
+    p { // book author
+        margin: 5px 0 0 0;
+        font-size: 13px;
+    }
+  }
+} 
+
+@media only screen and (max-width: 480px) { // mobile sizing... anything less than 480px gets these styles
+  .book {
+    height: 300px;
+    width: 200px;
+  }
+} 
