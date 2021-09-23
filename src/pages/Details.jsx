@@ -32,8 +32,6 @@ const Details = () => {
   }, []);
 
   const { title, author, published, pages, synopsis, image, rating } = bookData;
-
-  const imgSource = getImage(title);
   const ratingDisplay = [];
 
   for (let i = 0; i < 5; i += 1) {
@@ -51,7 +49,7 @@ const Details = () => {
         {bookData.title ? (
           <>
             <div className="details__bookcover">
-              <img src={imgSource} alt={image} />
+              <img src={getImage(title)} alt={image} />
               <div>{ratingDisplay}</div>
             </div>
 
