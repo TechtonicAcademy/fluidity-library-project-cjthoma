@@ -1,6 +1,12 @@
+import { useEffect } from 'react';
+
 import '../styles/edit.scss';
 
 const Edit = () => {
+  useEffect(() => {
+    if (window.pageYOffset > 0) window.scroll(0, 0);
+  }, []);
+
   return (
     <section className="edit">
       <h1 className="edit__title">Edit Book</h1>

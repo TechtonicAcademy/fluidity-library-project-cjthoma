@@ -9,6 +9,7 @@ const BookShelf = () => {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
+    if (window.pageYOffset > 0) window.scroll(0, 0);
     getBooks()
       .then(({ data: books }) => setBooks(books))
       .catch((error) => console.log(error));

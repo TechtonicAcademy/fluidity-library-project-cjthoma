@@ -5,6 +5,10 @@ import { addBook } from '../utils/API';
 import '../styles/addbook.scss';
 
 const AddBook = () => {
+  useEffect(() => {
+    if (window.pageYOffset > 0) window.scroll(0, 0);
+  }, []);
+
   const history = useHistory();
   const [bookData, setBookData] = useState({ rating: 0 });
 

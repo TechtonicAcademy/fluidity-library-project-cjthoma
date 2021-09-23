@@ -1,18 +1,19 @@
 import { NavLink } from 'react-router-dom';
+import { useEffect } from 'react';
 import '../styles/home.scss';
 
-const heroImage = require('../assets/images/pexels-janko-ferlic-590493.jpg');
-
-console.log(heroImage)
-
 const Home = () => {
+  useEffect(() => {
+    if (window.pageYOffset > 0) window.scroll(0, 0);
+  }, []);
+
   return (
     <>
       <section className="hero">
         <h1 className="hero__title">
           Books: <span>The only time it's okay to leave them on read.</span>
         </h1>
-        <img src={heroImage} alt="hero_image" />
+        <img src={require('../assets/images/pexels-janko-ferlic-590493.jpg')} alt="hero_image" />
       </section>
 
       <section className="home">

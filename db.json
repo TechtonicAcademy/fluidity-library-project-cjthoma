@@ -7,6 +7,7 @@
       "pages": "324",
       "published": "1985-01-01",
       "image": "enders_game_cover",
+      "rating": 5,
       "id": 1
     },
     {
@@ -16,6 +17,7 @@
       "pages": "369",
       "published": "2011-01-01",
       "image": "enders_game_cover",
+      "rating": 4,
       "id": 2
     },
     {
@@ -25,6 +27,7 @@
       "pages": "374",
       "published": "2011-08-11",
       "image": "ready_player_one_cover",
+      "rating": 3,
       "id": 3
     },
     {
@@ -33,7 +36,7 @@
       "synopsis": "Test",
       "published": "2021-09-21",
       "pages": "1",
-      "rating": 1,
+      "rating": 5,
       "id": 6
     }
   ]
