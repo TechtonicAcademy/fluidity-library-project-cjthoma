@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { addBook } from '../utils/API';
 
 import '../styles/addbook.scss';
@@ -7,8 +7,6 @@ import '../styles/addbook.scss';
 const AddBook = () => {
   const history = useHistory();
   const [bookData, setBookData] = useState({ rating: 0 });
-
-  console.log('book data:', bookData);
 
   const titleInputRef = useRef();
   const authorInputRef = useRef();
@@ -25,7 +23,16 @@ const AddBook = () => {
     const { rating } = bookData;
 
     if (!title || !author || !synopsis || !published || !pages || rating <= 0) {
-      return alert('Invalid Submition. Please fill in all fields.');
+      // eslint-disable-next-line no-alert
+      return alert(`
+        Invalid Submition. Please fill in all fields. \n
+        Title ${title ? '✅' : '❌'} \n
+        Author ${author ? '✅' : '❌'} \n
+        Synopsis ${synopsis ? '✅' : '❌'} \n
+        Published ${published ? '✅' : '❌'} \n
+        Pages ${pages ? '✅' : '❌'} \n
+        Rating ${rating ? '✅' : '❌'}
+      `);
     }
 
     addBook({ title, author, synopsis, published, pages, rating })
@@ -119,12 +126,12 @@ const AddBook = () => {
         </div>
       </div>
       <div className="addbook__edit">
-        <button type="submit" value="Add Book" onClick={() => handleSubmit()}>
+        <button className="button" type="submit" value="Add Book" onClick={() => handleSubmit()}>
           Add Book
         </button>
-        <button className="button--alt" type="submit" value="Cancel">
+        <NavLink className="button" to="/">
           Cancel
-        </button>
+        </NavLink>
       </div>
     </section>
   );

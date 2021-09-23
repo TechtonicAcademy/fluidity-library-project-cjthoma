@@ -28,6 +28,10 @@
       &--selected {
         color: variables.$primary;
       }
+
+      &:hover {
+        color: variables.$text;
+      }
   }
 
   &__menuBars {
