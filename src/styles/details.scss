@@ -22,7 +22,6 @@
             display: flex;
             justify-content: center;
             padding: 20px 0;
-            text-shadow: 5px 5px 3px black;
         }
 
         img {
@@ -55,7 +54,7 @@
         justify-content: center;
         padding-top: 50px;
 
-        & > a {
+        & > a { // all child anchors
             margin: 0 20px;
         }
     }

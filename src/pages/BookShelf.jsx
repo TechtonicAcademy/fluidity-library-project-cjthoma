@@ -1,24 +1,18 @@
+import { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
+import { getBooks } from '../utils/API';
+
 import '../styles/bookshelf.scss';
+import Book from '../components/Book';
 
 const BookShelf = () => {
-  const testBook = {
-    author: 'Orson Scott Card',
-    title: "Ender's Game",
-    image: 'assets/images/enders_game_cover.jpg',
-    alt: 'enders_game_cover',
-  };
+  const [books, setBooks] = useState([]);
 
-  const books = [];
-
-  for (let i = 0; i < 9; i += 1) {
-    books.push(
-      <div key={`${i}_${testBook.title}`} className="bookshelf__container__card">
-        <img src={testBook.image} alt={testBook.alt} />
-        <h3>{testBook.title}</h3>
-        <p>{testBook.author}</p>
-      </div>
-    );
-  }
+  useEffect(() => {
+    getBooks()
+      .then(({ data: books }) => setBooks(books))
+      .catch((error) => console.log(error));
+  }, []);
 
   return (
     <section className="bookshelf">
@@ -29,7 +23,18 @@ const BookShelf = () => {
         </button>
       </div>
       <h3 className="bookshelf__title">Knowledge is Power!</h3>
-      <section className="bookshelf__container">{books}</section>
+      {books ? (
+        <section className="bookshelf__container">
+          {books.map((book) => (
+            <Book key={book.id} bookData={book} />
+          ))}
+        </section>
+      ) : (
+        <section className="bookshelf__container">
+          The Library is empty,{' '}
+          <NavLink to="/add">add a few books to get things started!</NavLink>
+        </section>
+      )}
     </section>
   );
 };
