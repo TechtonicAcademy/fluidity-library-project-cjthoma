@@ -6,6 +6,7 @@ import '../styles/details.scss';
 
 const Details = () => {
   const { id } = useParams();
+  const history = useHistory();
   const [bookData, setBookData] = useState({});
 
   useEffect(() => {
@@ -24,7 +25,10 @@ const Details = () => {
           image,
         }));
       })
-      .catch((error) => console.log('An error has occured.', error));
+      .catch((error) => {
+        console.log('An error has occured.', error);
+        return history.push('/bookshelf');
+      });
   }, []);
 
   const { title, author, published, pages, synopsis, image, rating } = bookData;
