@@ -27,7 +27,14 @@ const BookShelf = () => {
       {books ? (
         <section className="bookshelf__container">
           {books.map((book) => (
-            <Book key={book.id} bookData={book} />
+            <Book
+              key={book.id}
+              author={book.author}
+              title={book.title}
+              synopsis={book.synopsis}
+              image={book.image}
+              id={book.id}
+            />
           ))}
         </section>
       ) : (

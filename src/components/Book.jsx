@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { getImage } from '../utils/API';
 import '../styles/book.scss';
 
-const Book = ({ bookData }) => {
+const Book = ({ title, author, synopsis, image, id }) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -15,10 +16,6 @@ const Book = ({ bookData }) => {
       }));
     });
   }, []);
-
-  const { title, author, synopsis, image, id } = bookData; // pages, published, synopsis
-
-  console.log()
 
   return (
     <NavLink className="book" to={`/details/${id}`}>
@@ -34,16 +31,12 @@ const Book = ({ bookData }) => {
   );
 };
 
+Book.propTypes = {
+  title: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  synopsis: PropTypes.string.isRequired,
+  // image: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+};
+
 export default Book;
-
-function getImage(title) {
-  const sourceMap = {
-    "Ender's Game"    : () => { return require('../assets/images/enders_game_cover.jpg') },
-    "The Martian"     : () => { return require('../assets/images/the_martian_cover.jpg') },
-    "Ready Player One": () => { return require('../assets/images/ready_player_one_cover.jpg') },
-    "default"         : () => { return require('../assets/images/enders_game_cover.jpg') },
-  };
-
-  if (!sourceMap[title]) return sourceMap.default();
-  return sourceMap[title]();
-}
