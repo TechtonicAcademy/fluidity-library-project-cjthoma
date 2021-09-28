@@ -1,9 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import '../styles/home.scss';
 
-const heroImage = require('../assets/images/pexels-janko-ferlic-590493.jpg');
-
-console.log(heroImage)
+import heroImage from '../assets/images/pexels-janko-ferlic-590493.jpg';
 
 const Home = () => {
   return (
@@ -12,7 +10,7 @@ const Home = () => {
         <h1 className="hero__title">
           Books: <span>The only time it's okay to leave them on read.</span>
         </h1>
-        <img src={heroImage} alt="hero_image" />
+        <img src={heroImage} alt="library_bookshelf_hero_image" />
       </section>
 
       <section className="home">
