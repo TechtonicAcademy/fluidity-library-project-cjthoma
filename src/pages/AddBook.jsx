@@ -124,7 +124,7 @@ const AddBook = () => {
 
         <div className="addbook__container__addimage">
           <div>Add Image</div>
-          <button type="submit" value="Add Image">
+          <button className="button" type="submit" value="Add Image">
             Add Image
           </button>
         </div>

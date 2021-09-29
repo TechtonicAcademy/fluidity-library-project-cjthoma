@@ -17,13 +17,13 @@ const BookShelf = () => {
 
   return (
     <section className="bookshelf">
-      <div className="navbar__searchbar--mobile">
+      <h3 className="bookshelf__title">Knowledge is Power!</h3>
+      <div className="bookshelf__searchbar--mobile">
         <input type="text" placeholder="Search.." />
         <button type="submit" value="Go">
           Go
         </button>
       </div>
-      <h3 className="bookshelf__title">Knowledge is Power!</h3>
       {books ? (
         <section className="bookshelf__container">
           {books.map((book) => (
