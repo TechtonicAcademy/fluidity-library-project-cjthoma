@@ -96,7 +96,7 @@ const Details = () => {
 
         <button
           className="button button--delete"
-          onClick={() => handleDelete(id)}
+          onClick={() => handleDelete()}
           type="submit"
         >
           Delete Book
