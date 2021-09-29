@@ -5,7 +5,7 @@
     flex-direction: column;
     align-items: center;
     padding-bottom: 40px;
-    background-color: white;
+    background-color: rgba($color: variables.$background, $alpha: 0.75);
     color: variables.$background;
     box-shadow: inset 2px 2px 2px black, inset -2px -2px 2px black;
 
@@ -14,6 +14,7 @@
         margin-bottom: 20px;
         font-size: 35px;
         font-weight: 300;
+        color: variables.$text;
     }
 
     &__container {
@@ -21,13 +22,15 @@
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
-        width: 900px;
-        max-width: 1000px;
+        width: 85%;
+        min-width: 700px;
         height: 675px;
         padding: 25px 0;
         overflow: scroll;
         overflow-x: hidden;
-        border: 2px #1e1e1e solid;
+        background-color: white;
+        border: 2px variables.$background solid;
+        box-shadow: inset 2px 2px 2px rgba($color: grey, $alpha: 0.85), inset -2px -2px 2px rgba($color: grey, $alpha: 0.85);
 
         /* width */
         &::-webkit-scrollbar {
@@ -64,9 +67,9 @@
             font-size: 25px;
         }
     
-        &__container {
-            width: 750px;
-        }
+        // &__container {
+        //     width: 750px;
+        // }
     }
 } 
 
@@ -78,6 +81,7 @@
     
         &__container {
             width: 80%;
+            min-width: unset;
             height: unset;
             flex-direction: row;
             overflow-x: unset;

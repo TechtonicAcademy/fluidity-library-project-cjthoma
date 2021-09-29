@@ -26,6 +26,15 @@
       "published": "2011-08-11",
       "image": "ready_player_one_cover",
       "id": 3
+    },
+    {
+      "title": "Test",
+      "author": "Test",
+      "synopsis": "Test",
+      "published": "2021-09-21",
+      "pages": "1",
+      "rating": 1,
+      "id": 6
     }
   ]
 }

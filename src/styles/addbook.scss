@@ -64,10 +64,6 @@
                 background: #383636;
             }
 
-            button {
-                width: 100%;
-            }
-
             &--mobile {
                 display: none;
             }
@@ -88,11 +84,6 @@
         display: flex;
         justify-content: center;
         padding-top: 50px;
-        
-        button {
-            margin: 0 20px;
-            box-shadow: 4px 4px 7px black;
-        }
     }
 }
 
@@ -189,10 +180,6 @@
                         height: 235px;
                         background: #383636;
                     }
-
-                    button {
-                        width: 175px;
-                    }
                 }
             }
         }
@@ -208,11 +195,6 @@
 
         &__edit {
             width: 100%;
-            
-            button {
-                margin: 0 10px;
-                box-shadow: 4px 4px 7px black;
-            }
         }
     }
 } 
