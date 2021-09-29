@@ -8,6 +8,10 @@
   background-color: variables.$background;
   color: variables.$text;
   white-space: nowrap;
+
+  &__container {
+    width: 40%;
+  }
   
   &__title {
       width: 25%;

@@ -67,19 +67,19 @@ const Edit = () => {
 
         <div className="edit__container__addimage">
           <img className="edit__container__addimage__image" />
-          <button type="submit" value="Add Image">
+          <button className="button" type="submit" value="Add Image">
             Change Image
           </button>
         </div>
       </div>
       <div className="edit__edit">
-        <button type="submit" value="Add Image">
+        <button className="button" type="submit" value="Add Image">
           Submit
         </button>
-        <button className="button--alt" type="submit" value="Add Image">
+        <button className="button button--alt" type="submit" value="Add Image">
           Cancel
         </button>
-        <button className="button--delete" type="submit" value="Add Image">
+        <button className="button button--delete" type="submit" value="Add Image">
           Delete Book
         </button>
       </div>

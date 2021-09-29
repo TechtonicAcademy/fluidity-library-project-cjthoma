@@ -133,9 +133,9 @@ const AddBook = () => {
         <button className="button" type="submit" value="Add Book" onClick={() => handleSubmit()}>
           Add Book
         </button>
-        <NavLink className="button" to="/">
+        <button className="button" onClick={() => history.push('/')}>
           Cancel
-        </NavLink>
+        </button>
       </div>
     </section>
   );
