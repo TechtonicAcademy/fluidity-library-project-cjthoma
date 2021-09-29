@@ -54,13 +54,11 @@
             margin-left: 50px;
             bottom: 20px;
             width: 170px;
-
             
-            &__image {
+            img {
                 height: 235px;
                 width: 170px;
-                background: url('../assets/images/enders_game_cover.jpg');
-                background-size: cover;
+
             }
 
             button {
