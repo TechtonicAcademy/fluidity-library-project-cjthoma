@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { useHistory, useParams } from 'react-router';
 import { useState, useEffect } from 'react';
-import { getBook, getImage } from '../utils/API';
+import { deleteBook, getBook, getImage } from '../utils/API';
 import '../styles/details.scss';
 
 const Details = () => {
@@ -30,6 +30,15 @@ const Details = () => {
         return history.push('/bookshelf');
       });
   }, []);
+
+  const handleDelete = () => {
+    deleteBook(id)
+      .then(() => history.push('/bookshelf'))
+      .catch((error) => {
+        console.log('An error has occured', error);
+        throw error;
+      });
+  };
 
   const { title, author, published, pages, synopsis, image, rating } = bookData;
   const ratingDisplay = [];
@@ -72,17 +81,25 @@ const Details = () => {
       <div className="details__edit">
         <button
           className="button"
-          onClick={() => history(`/edit/${id}`)}
+          onClick={() => history.push(`/edit/${id}`)}
           type="submit"
         >
           Edit Book
         </button>
         <button
           className="button"
-          onClick={() => history(`/bookshelf`)}
+          onClick={() => history.push(`/bookshelf`)}
           type="submit"
         >
           Back to Shelf
+        </button>
+
+        <button
+          className="button button--delete"
+          onClick={() => handleDelete(id)}
+          type="submit"
+        >
+          Delete Book
         </button>
       </div>
     </section>

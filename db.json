@@ -29,15 +29,6 @@
       "image": "ready_player_one_cover",
       "rating": 3,
       "id": 3
-    },
-    {
-      "title": "Test",
-      "author": "Test",
-      "synopsis": "Test",
-      "published": "2021-09-21",
-      "pages": "1",
-      "rating": 5,
-      "id": 6
     }
   ]
 }

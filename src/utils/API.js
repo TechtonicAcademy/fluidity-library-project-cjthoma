@@ -16,6 +16,10 @@ export const addBook = (bookData) => {
   });
 };
 
+export const deleteBook = (id) => {
+  return axios.delete(`http://localhost:3000/books/${id}`);
+};
+
 export const getImage = (title) => {
   const sourceMap = {
     "Ender's Game"    : () => { return require('../assets/images/enders_game_cover.jpg') },
