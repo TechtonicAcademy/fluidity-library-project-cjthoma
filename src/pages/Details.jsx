@@ -1,5 +1,4 @@
-import { NavLink } from 'react-router-dom';
-import { useHistory, useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { deleteBook, getBook, getImage } from '../utils/API';
 import '../styles/details.scss';
