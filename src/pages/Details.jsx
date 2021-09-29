@@ -70,12 +70,20 @@ const Details = () => {
         )}
       </div>
       <div className="details__edit">
-        <NavLink className="button" to={`/edit/${id}`}>
+        <button
+          className="button"
+          onClick={() => history(`/edit/${id}`)}
+          type="submit"
+        >
           Edit Book
-        </NavLink>
-        <NavLink className="button" to="/bookshelf">
+        </button>
+        <button
+          className="button"
+          onClick={() => history(`/bookshelf`)}
+          type="submit"
+        >
           Back to Shelf
-        </NavLink>
+        </button>
       </div>
     </section>
   );

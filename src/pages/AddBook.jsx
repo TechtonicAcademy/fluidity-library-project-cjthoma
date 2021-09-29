@@ -116,9 +116,7 @@ const AddBook = () => {
 
           <div className="addbook__container__input">
             <h3>Rating</h3>
-            <div>
-              {ratingDisplay}
-            </div>
+            <div>{ratingDisplay}</div>
           </div>
         </div>
 
@@ -130,10 +128,14 @@ const AddBook = () => {
         </div>
       </div>
       <div className="addbook__edit">
-        <button className="button" type="submit" value="Add Book" onClick={() => handleSubmit()}>
+        <button className="button" onClick={() => handleSubmit()} type="submit">
           Add Book
         </button>
-        <button className="button" onClick={() => history.push('/')}>
+        <button
+          className="button"
+          onClick={() => history.push('/')}
+          type="submit"
+        >
           Cancel
         </button>
       </div>

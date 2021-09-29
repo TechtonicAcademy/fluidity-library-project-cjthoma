@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { getBooks } from '../utils/API';
 
 import '../styles/bookshelf.scss';
@@ -40,7 +40,7 @@ const BookShelf = () => {
       ) : (
         <section className="bookshelf__container">
           The Library is empty,{' '}
-          <NavLink to="/add">add a few books to get things started!</NavLink>
+          <Link to="/add">add a few books to get things started!</Link>
         </section>
       )}
     </section>

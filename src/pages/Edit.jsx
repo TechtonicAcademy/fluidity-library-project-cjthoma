@@ -76,10 +76,10 @@ const Edit = () => {
         <button className="button" type="submit" value="Add Image">
           Submit
         </button>
-        <button className="button button--alt" type="submit" value="Add Image">
+        <button className="button button--alt" type="submit">
           Cancel
         </button>
-        <button className="button button--delete" type="submit" value="Add Image">
+        <button className="button button--delete" type="submit">
           Delete Book
         </button>
       </div>
