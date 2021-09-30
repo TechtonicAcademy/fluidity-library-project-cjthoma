@@ -1,12 +1,10 @@
 import { NavLink } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useScrollToTop } from '../utils/hooks';
 import '../styles/home.scss';
 import heroImage from '../assets/images/pexels-janko-ferlic-590493.jpg';
 
 const Home = () => {
-  useEffect(() => {
-    if (window.pageYOffset > 0) window.scroll(0, 0);
-  }, []);
+  useScrollToTop();
 
   return (
     <>

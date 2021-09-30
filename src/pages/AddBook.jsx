@@ -1,13 +1,12 @@
 import { useState, useRef, useEffect } from 'react';
+import { useScrollToTop } from '../utils/hooks';
 import { NavLink, useHistory } from 'react-router-dom';
 import { addBook } from '../utils/API';
 
 import '../styles/addbook.scss';
 
 const AddBook = () => {
-  useEffect(() => {
-    if (window.pageYOffset > 0) window.scroll(0, 0);
-  }, []);
+  useScrollToTop();
 
   const history = useHistory();
   const [bookData, setBookData] = useState({ rating: 0 });

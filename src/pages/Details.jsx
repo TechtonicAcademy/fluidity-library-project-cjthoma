@@ -1,35 +1,13 @@
 import { useHistory, useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import { useScrollToTop } from '../utils/hooks';
+import { useBookData, useScrollToTop } from '../utils/hooks';
 import { deleteBook, getBook, getImage } from '../utils/API';
 import '../styles/details.scss';
 
 const Details = () => {
-  const scroll = useScrollToTop();
+  useScrollToTop();
   const { id } = useParams();
   const history = useHistory();
-  const [bookData, setBookData] = useState({});
-
-  useEffect(() => {
-    getBook(id)
-      .then((bookData) => {
-        const { title, author, published, rating, synopsis, image } =
-          bookData.data;
-        return setBookData((prevState) => ({
-          ...prevState,
-          title,
-          author,
-          published,
-          rating,
-          synopsis,
-          image,
-        }));
-      })
-      .catch((error) => {
-        console.log('An error has occurred.', error);
-        return history.push('/bookshelf');
-      });
-  }, []);
+  const bookData = useBookData(id);
 
   const handleDelete = () => {
     deleteBook(id)

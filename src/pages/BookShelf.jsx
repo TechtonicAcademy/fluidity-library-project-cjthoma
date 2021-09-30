@@ -7,7 +7,7 @@ import '../styles/bookshelf.scss';
 import Book from '../components/Book';
 
 const BookShelf = () => {
-  const scroll = useScrollToTop();
+  useScrollToTop();
   const [books, setBooks] = useState([]);
 
   useEffect(() => {

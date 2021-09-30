@@ -3,7 +3,7 @@ import { useScrollToTop } from '../utils/hooks';
 import '../styles/edit.scss';
 
 const Edit = () => {
-  const scroll = useScrollToTop();
+  useScrollToTop();
 
   return (
     <section className="edit">
