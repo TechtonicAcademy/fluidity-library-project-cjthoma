@@ -63,17 +63,14 @@ const AddBook = () => {
     setBookData((prevState) => ({ ...prevState, rating: target }));
   };
 
-  const ratingDisplay = [];
-  for (let i = 0; i < 5; i += 1) {
-    ratingDisplay.push(
+  const { rating } = bookData;
+  const ratingDisplay = [1, 2, 3, 4, 5].map((r) => {
+    return (
       <span
-        className={`fa fa-star ${
-          bookData.rating >= i + 1 ? 'fa-star--checked' : ''
-        }`}
-        onClick={() => handleRating(i + 1)}
-      />
+        className={`fa fa-star ${rating >= r ? 'fa-star--checked' : ''}`}
+        onClick={() => handleRating(r)} />
     );
-  }
+  });
 
   return (
     <section className="addbook">
@@ -92,7 +89,7 @@ const AddBook = () => {
 
           <div className="addbook__container__addimage--mobile">
             <div>Add Image</div>
-            <button type="submit" value="Add Image">
+            <button type="button" value="Add Image">
               Add Image
             </button>
           </div>
@@ -122,19 +119,19 @@ const AddBook = () => {
 
         <div className="addbook__container__addimage">
           <div>Add Image</div>
-          <button className="button" type="submit" value="Add Image">
+          <button className="button" type="button" value="Add Image">
             Add Image
           </button>
         </div>
       </div>
       <div className="addbook__edit">
-        <button className="button" onClick={() => handleSubmit()} type="submit">
+        <button className="button" onClick={() => handleSubmit()} type="button">
           Add Book
         </button>
         <button
           className="button"
           onClick={() => history.push('/')}
-          type="submit"
+          type="button"
         >
           Cancel
         </button>

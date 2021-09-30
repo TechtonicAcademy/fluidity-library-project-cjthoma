@@ -1,15 +1,16 @@
 import { useHistory, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { useScrollToTop } from '../utils/hooks';
 import { deleteBook, getBook, getImage } from '../utils/API';
 import '../styles/details.scss';
 
 const Details = () => {
+  const scroll = useScrollToTop();
   const { id } = useParams();
   const history = useHistory();
   const [bookData, setBookData] = useState({});
 
   useEffect(() => {
-    if (window.pageYOffset > 0) window.scroll(0, 0);
     getBook(id)
       .then((bookData) => {
         const { title, author, published, rating, synopsis, image } =
@@ -25,7 +26,7 @@ const Details = () => {
         }));
       })
       .catch((error) => {
-        console.log('An error has occured.', error);
+        console.log('An error has occurred.', error);
         return history.push('/bookshelf');
       });
   }, []);
@@ -40,55 +41,48 @@ const Details = () => {
   };
 
   const { title, author, published, pages, synopsis, image, rating } = bookData;
-  const ratingDisplay = [];
 
-  for (let i = 0; i < 5; i += 1) {
-    ratingDisplay.push(
+  const ratingDisplay = [1, 2, 3, 4, 5].map((r) => {
+    return (
       <span
-        key={`rating_${i + 1}`}
-        className={`fa fa-star ${rating >= i + 1 ? 'fa-star--checked' : ''}`}
+        key={`rating_${r}`}
+        className={`fa fa-star ${rating >= r ? 'fa-star--checked' : ''}`}
       />
     );
-  }
+  });
 
   return (
     <section className="details">
       <div className="details__container">
-        {bookData.title ? (
-          <>
-            <div className="details__bookcover">
-              <img src={getImage(title)} alt={image} />
-              <div>{ratingDisplay}</div>
-            </div>
+        <div className="details__bookcover">
+          <img src={getImage(title)} alt={image} />
+          <div>{ratingDisplay}</div>
+        </div>
 
-            <div className="details__info">
-              <h2 className="details__info__title">{title}</h2>
-              <h3>{author}</h3>
-              <p>
-                <em>Published: {published}</em>
-              </p>
-              <p>
-                <em>{pages}</em>
-              </p>
-              <p>{synopsis} </p>
-            </div>
-          </>
-        ) : (
-          <div style={{ height: 500 }} />
-        )}
+        <div className="details__info">
+          <h2 className="details__info__title">{title}</h2>
+          <h3>{author}</h3>
+          <p>
+            <em>Published: {published}</em>
+          </p>
+          <p>
+            <em>{pages}</em>
+          </p>
+          <p>{synopsis} </p>
+        </div>
       </div>
       <div className="details__edit">
         <button
           className="button"
           onClick={() => history.push(`/edit/${id}`)}
-          type="submit"
+          type="button"
         >
           Edit Book
         </button>
         <button
           className="button"
           onClick={() => history.push(`/bookshelf`)}
-          type="submit"
+          type="button"
         >
           Back to Shelf
         </button>
@@ -96,7 +90,7 @@ const Details = () => {
         <button
           className="button button--delete"
           onClick={() => handleDelete()}
-          type="submit"
+          type="button"
         >
           Delete Book
         </button>
