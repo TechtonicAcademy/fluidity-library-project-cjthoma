@@ -8,7 +8,7 @@ const Details = () => {
   const { id } = useParams();
   const history = useHistory();
 
-  const { bookData, setBookData } = useGetBookDataOnload(id);
+  const { bookData } = useGetBookDataOnload(id);
 
   const handleDelete = () => {
     deleteBook(id)
