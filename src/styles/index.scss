@@ -27,37 +27,32 @@ button {
     text-decoration: none;
     box-shadow: 5px 5px 5px black;
     transition: all 0.5s ease;
+    cursor: pointer;
 
     &--alt {
         color: white;
         background: #383636;
+        cursor: pointer;
         transition: all 0.5s ease;
 
         &:hover {
-            cursor: pointer;
-            border: 2px variables.$text solid;
             background-color: rgba($color: grey, $alpha: 1);
-            cursor: pointer;
         }
     }
 
     &--delete {
         color: white;
-        background: crimson;
+        background: maroon;
+        cursor: pointer;
         transition: all 0.5s ease;
 
         &:hover {
-            cursor: pointer;
-            border: 2px variables.$text solid;
-            background-color: rgba($color: maroon, $alpha: 1);
-            cursor: pointer;
+            background-color: rgba($color: crimson, $alpha: 1);
         }
     }
 
     &:hover {
-        cursor: pointer;
         border: 2px variables.$text solid;
         background-color: rgba($color: variables.$background, $alpha: 0.85);
-        cursor: pointer;
     }
 }
