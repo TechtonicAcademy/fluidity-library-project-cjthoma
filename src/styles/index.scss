@@ -31,11 +31,27 @@ button {
     &--alt {
         color: white;
         background: #383636;
+        transition: all 0.5s ease;
+
+        &:hover {
+            cursor: pointer;
+            border: 2px variables.$text solid;
+            background-color: rgba($color: grey, $alpha: 1);
+            cursor: pointer;
+        }
     }
 
     &--delete {
         color: white;
         background: crimson;
+        transition: all 0.5s ease;
+
+        &:hover {
+            cursor: pointer;
+            border: 2px variables.$text solid;
+            background-color: rgba($color: maroon, $alpha: 1);
+            cursor: pointer;
+        }
     }
 
     &:hover {

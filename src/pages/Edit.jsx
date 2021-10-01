@@ -1,45 +1,22 @@
-import { useEffect, useState, useRef } from 'react';
+import { useRef } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { editBook, deleteBook, getBook, getImage } from '../utils/API';
-import { useScrollToTop } from '../utils/hooks';
+import { editBook, deleteBook, getImage } from '../utils/API';
+import { useScrollToTop, useGetBookDataOnload } from '../utils/hooks';
 
 import '../styles/edit.scss';
-import { parseInt } from 'lodash';
 
 const Edit = () => {
+  useScrollToTop();
+
   const { id } = useParams();
   const history = useHistory();
-  const [bookData, setBookData] = useState({});
+  const { bookData, setBookData } = useGetBookDataOnload(id);
 
   const titleInputRef = useRef();
   const authorInputRef = useRef();
   const synopsisInputRef = useRef();
   const publishedInputRef = useRef();
   const pagesInputRef = useRef();
-
-  useEffect(() => {
-    if (window.pageYOffset > 0) window.scroll(0, 0);
-    getBook(id)
-      .then((response) => {
-        const { title, author, published, rating, synopsis, pages, image } =
-          response.data;
-        return setBookData((prevState) => ({
-          ...prevState,
-          title,
-          author,
-          pages: parseInt(pages),
-          published,
-          rating,
-          synopsis,
-          image,
-        }));
-      })
-      .catch((error) => {
-        console.log('An error has occured.', error);
-        return history.push('/bookshelf');
-      });
-  }, []);
-  useScrollToTop();
 
   const handleSubmit = () => {
     const title = titleInputRef.current.value
@@ -112,13 +89,13 @@ const Edit = () => {
 
   const { title, author, published, pages, synopsis, image, rating } = bookData;
 
-  const ratingDisplay = [];
-  for (let i = 0; i < 5; i += 1) {
-    ratingDisplay.push(
-      // eslint-disable-next-line prettier/prettier
-      <span className={`fa fa-star ${rating >= i + 1 ? 'fa-star--checked' : ''}`} onClick={() => handleRating(i + 1)} />
+  const ratingDisplay = [1, 2, 3, 4, 5].map((r) => {
+    return (
+      <span
+        className={`fa fa-star ${rating >= r ? 'fa-star--checked' : ''}`}
+        onClick={() => handleRating(r)} />
     );
-  }
+  });
 
   return (
     <section className="edit">
@@ -181,24 +158,18 @@ const Edit = () => {
             alt={image}
             style={{ width: 170, height: 235 }}
           />
-          <button className="button" type="submit" value="Add Image">
+          <button className="button" type="submit">
             Change Image
           </button>
         </div>
       </div>
       <div className="edit__edit">
-        <button
-          className="button"
-          type="submit"
-          value="Add Image"
-          onClick={() => handleSubmit()}
-        >
+        <button className="button" type="submit" onClick={() => handleSubmit()}>
           Submit
         </button>
         <button
           className="button--alt"
           type="submit"
-          value="Add Image"
           onClick={() => history.push(`/details/${id}`)}
         >
           Cancel
