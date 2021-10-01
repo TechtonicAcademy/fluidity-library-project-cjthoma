@@ -14,13 +14,26 @@ const NavBar = () => {
     <nav className="navbar">
       <h2 className="navbar__title">{title}</h2>
       <div className="navbar__container">
-        <NavLink className={`navbar__link ${location === '/' ? 'navbar__link--selected' : '' }`} to="/">
+        <NavLink
+          isActive={() => location === '/'}
+          activeClassName="navbar__link--selected"
+          className="navbar__link"
+          to="/"
+        >
           Home
         </NavLink>
-        <NavLink className={`navbar__link ${location.includes('/bookshelf') ? 'navbar__link--selected' : '' }`} to="/bookshelf">
+        <NavLink
+          activeClassName="navbar__link--selected"
+          className="navbar__link"
+          to="/bookshelf"
+        >
           Bookshelf
         </NavLink>
-        <NavLink className={`navbar__link ${location === '/add' ? 'navbar__link--selected' : '' }`} to="/add">
+        <NavLink
+          activeClassName="navbar__link--selected"
+          className="navbar__link"
+          to="/add"
+        >
           Add Book
         </NavLink>
       </div>

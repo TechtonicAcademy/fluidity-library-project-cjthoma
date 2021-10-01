@@ -39,6 +39,7 @@ button {
     }
 
     &:hover {
+        cursor: pointer;
         border: 2px variables.$text solid;
         background-color: rgba($color: variables.$background, $alpha: 0.85);
         cursor: pointer;

@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { editBook, deleteBook, getBook, getImage } from '../utils/API';
+import { useScrollToTop } from '../utils/hooks';
 
 import '../styles/edit.scss';
 import { parseInt } from 'lodash';
@@ -38,6 +39,7 @@ const Edit = () => {
         return history.push('/bookshelf');
       });
   }, []);
+  useScrollToTop();
 
   const handleSubmit = () => {
     const title = titleInputRef.current.value
@@ -139,9 +141,7 @@ const Edit = () => {
               alt={image}
               style={{ width: 170, height: 235 }}
             />
-            <button className="button" type="submit" value="Add Image">
-              Change Image
-            </button>
+            <button type="button">Change Image</button>
           </div>
 
           <div className="edit__container__input edit__container__input--synopsis">

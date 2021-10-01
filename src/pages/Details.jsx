@@ -1,20 +1,20 @@
-import { NavLink } from 'react-router-dom';
-import { useHistory, useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { getBook, getImage } from '../utils/API';
+import { useScrollToTop } from '../utils/hooks';
+import { deleteBook, getBook, getImage } from '../utils/API';
 import '../styles/details.scss';
 
 const Details = () => {
+  useScrollToTop();
   const { id } = useParams();
   const history = useHistory();
+
   const [bookData, setBookData] = useState({});
 
   useEffect(() => {
-    if (window.pageYOffset > 0) window.scroll(0, 0);
     getBook(id)
-      .then((bookData) => {
-        const { title, author, published, rating, synopsis, image } =
-          bookData.data;
+      .then((response) => {
+        const { title, author, published, rating, synopsis, image } = response.data;
         return setBookData((prevState) => ({
           ...prevState,
           title,
@@ -26,56 +26,74 @@ const Details = () => {
         }));
       })
       .catch((error) => {
-        console.log('An error has occured.', error);
+        console.log('An error has occurred.', error);
         return history.push('/bookshelf');
       });
   }, []);
 
-  const { title, author, published, pages, synopsis, image, rating } = bookData;
-  const ratingDisplay = [];
+  const handleDelete = () => {
+    deleteBook(id)
+      .then(() => history.push('/bookshelf'))
+      .catch((error) => {
+        console.log('An error has occured', error);
+        throw error;
+      });
+  };
 
-  for (let i = 0; i < 5; i += 1) {
-    ratingDisplay.push(
+  const { title, author, published, pages, synopsis, image, rating } = bookData;
+
+  const ratingDisplay = [1, 2, 3, 4, 5].map((r) => {
+    return (
       <span
-        key={`rating_${i + 1}`}
-        className={`fa fa-star ${rating >= i + 1 ? 'fa-star--checked' : ''}`}
+        key={`rating_${r}`}
+        className={`fa fa-star ${rating >= r ? 'fa-star--checked' : ''}`}
       />
     );
-  }
+  });
 
   return (
     <section className="details">
       <div className="details__container">
-        {bookData.title ? (
-          <>
-            <div className="details__bookcover">
-              <img src={getImage(title)} alt={image} />
-              <div>{ratingDisplay}</div>
-            </div>
+        <div className="details__bookcover">
+          <img src={getImage(title)} alt={image} />
+          <div>{ratingDisplay}</div>
+        </div>
 
-            <div className="details__info">
-              <h2 className="details__info__title">{title}</h2>
-              <h3>{author}</h3>
-              <p>
-                <em>Published: {published}</em>
-              </p>
-              <p>
-                <em>{pages}</em>
-              </p>
-              <p>{synopsis} </p>
-            </div>
-          </>
-        ) : (
-          <div style={{ height: 500 }} />
-        )}
+        <div className="details__info">
+          <h2 className="details__info__title">{title}</h2>
+          <h3>{author}</h3>
+          <p>
+            <em>Published: {published}</em>
+          </p>
+          <p>
+            <em>{pages}</em>
+          </p>
+          <p>{synopsis} </p>
+        </div>
       </div>
       <div className="details__edit">
-        <NavLink className="button" to={`/edit/${id}`}>
+        <button
+          className="button"
+          onClick={() => history.push(`/edit/${id}`)}
+          type="button"
+        >
           Edit Book
-        </NavLink>
-        <NavLink className="button" to="/bookshelf">
+        </button>
+        <button
+          className="button"
+          onClick={() => history.push(`/bookshelf`)}
+          type="button"
+        >
           Back to Shelf
-        </NavLink>
+        </button>
+
+        <button
+          className="button button--delete"
+          onClick={() => handleDelete()}
+          type="button"
+        >
+          Delete Book
+        </button>
       </div>
     </section>
   );

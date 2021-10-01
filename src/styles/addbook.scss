@@ -83,7 +83,11 @@
     &__edit {
         display: flex;
         justify-content: center;
-        padding-top: 50px;
+        padding: 50px;
+
+        button {
+            margin: 0 20px;
+        }
     }
 }
 
