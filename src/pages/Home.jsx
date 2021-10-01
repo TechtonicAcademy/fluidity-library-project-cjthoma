@@ -1,9 +1,11 @@
 import { NavLink } from 'react-router-dom';
+import { useScrollToTop } from '../utils/hooks';
 import '../styles/home.scss';
-
 import heroImage from '../assets/images/pexels-janko-ferlic-590493.jpg';
 
 const Home = () => {
+  useScrollToTop();
+
   return (
     <>
       <section className="hero">

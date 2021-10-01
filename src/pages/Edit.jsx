@@ -1,6 +1,10 @@
+import { useScrollToTop } from '../utils/hooks';
+
 import '../styles/edit.scss';
 
 const Edit = () => {
+  useScrollToTop();
+
   return (
     <section className="edit">
       <h1 className="edit__title">Edit Book</h1>
@@ -22,9 +26,7 @@ const Edit = () => {
               src="./assets/images/enders_game_cover.jpg"
               alt="book_cover"
             />
-            <button type="submit" value="Add Image">
-              Change Image
-            </button>
+            <button type="button">Change Image</button>
           </div>
 
           <div className="edit__container__input edit__container__input--synopsis">
@@ -61,19 +63,19 @@ const Edit = () => {
 
         <div className="edit__container__addimage">
           <img className="edit__container__addimage__image" />
-          <button type="submit" value="Add Image">
+          <button className="button" type="button">
             Change Image
           </button>
         </div>
       </div>
       <div className="edit__edit">
-        <button type="submit" value="Add Image">
+        <button className="button" type="button">
           Submit
         </button>
-        <button className="button--alt" type="submit" value="Add Image">
+        <button className="button button--alt" type="button">
           Cancel
         </button>
-        <button className="button--delete" type="submit" value="Add Image">
+        <button className="button button--delete" type="button">
           Delete Book
         </button>
       </div>

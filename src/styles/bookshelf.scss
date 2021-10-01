@@ -54,6 +54,27 @@
             background: royalblue;
         } 
     }
+
+    &__searchbar--mobile {
+        display: none;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        width: 80%;
+        padding-bottom: 30px;
+        white-space: nowrap;
+
+        input {
+            width: 60%;
+            height: 30px;
+        }
+
+        button {
+            width: 50px;
+            height: 36px;
+        }
+    }
 }
 
 // -- !Media Queries - //
@@ -89,7 +110,7 @@
         }
 
         &__searchbar--mobile {
-            display: unset;
+            display: flex;
         }
     }
 } 

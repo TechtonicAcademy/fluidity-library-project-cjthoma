@@ -8,20 +8,27 @@
   background-color: variables.$background;
   color: variables.$text;
   white-space: nowrap;
+
+  &__container {
+    width: 40%;
+  }
   
   &__title {
-      width: 550px;
+      width: 25%;
       text-align: left;
       font-size: 20px;
       padding-left: 20px;
   }
 
+  &__container {
+    width: 40%;
+  }
+
   &__link { // nav bar li
-      display: inline;
+      display: inline-block;
       text-decoration: none;
-      width: 33%;
       text-align: center;
-      padding: 0 10px;
+      width: 33%;
       color: grey;
       transition: color 0.5s ease;
 
@@ -42,7 +49,7 @@
       display: flex;
       justify-content: right;
       align-items: center;
-
+      width: 30%;
       padding: 0 20px;
 
       input {
@@ -52,6 +59,8 @@
 
       button {
         width: 50px;
+        height: 36px;
+        box-shadow: unset;
       }
   }
 
@@ -64,6 +73,10 @@
   display: none;
 }
 
+.activeClassName {
+  color: 'pink';
+}
+
 
 // -- !Media Queries - //
 
@@ -72,10 +85,14 @@
 // mobile  375px - 480px
 @media only screen and (max-width: 1024px) { // med desktop sizing... anything less than 1024px gets these styles
     .navbar {
-        &__link { // nav bar li
-            font-size: 13px;
-        }
+      &__title {
+        font-size: 15px;
     }
+
+    &__link { // nav bar li
+        font-size: 12px;
+    }
+  }
 } 
 
 @media only screen and (max-width: 480px) { // mobile sizing... anything less than 480px gets these styles

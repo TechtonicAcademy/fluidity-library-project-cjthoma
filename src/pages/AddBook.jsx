@@ -1,10 +1,13 @@
 import { useState, useRef, useEffect } from 'react';
+import { useScrollToTop } from '../utils/hooks';
 import { NavLink, useHistory } from 'react-router-dom';
 import { addBook } from '../utils/API';
 
 import '../styles/addbook.scss';
 
 const AddBook = () => {
+  useScrollToTop();
+
   const history = useHistory();
   const [bookData, setBookData] = useState({ rating: 0 });
 
@@ -59,17 +62,14 @@ const AddBook = () => {
     setBookData((prevState) => ({ ...prevState, rating: target }));
   };
 
-  const ratingDisplay = [];
-  for (let i = 0; i < 5; i += 1) {
-    ratingDisplay.push(
+  const { rating } = bookData;
+  const ratingDisplay = [1, 2, 3, 4, 5].map((r) => {
+    return (
       <span
-        className={`fa fa-star ${
-          bookData.rating >= i + 1 ? 'fa-star--checked' : ''
-        }`}
-        onClick={() => handleRating(i + 1)}
-      />
+        className={`fa fa-star ${rating >= r ? 'fa-star--checked' : ''}`}
+        onClick={() => handleRating(r)} />
     );
-  }
+  });
 
   return (
     <section className="addbook">
@@ -88,7 +88,7 @@ const AddBook = () => {
 
           <div className="addbook__container__addimage--mobile">
             <div>Add Image</div>
-            <button type="submit" value="Add Image">
+            <button type="button" value="Add Image">
               Add Image
             </button>
           </div>
@@ -112,24 +112,26 @@ const AddBook = () => {
 
           <div className="addbook__container__input">
             <h3>Rating</h3>
-            <div>
-              {ratingDisplay}
-            </div>
+            <div>{ratingDisplay}</div>
           </div>
         </div>
 
         <div className="addbook__container__addimage">
           <div>Add Image</div>
-          <button type="submit" value="Add Image">
+          <button className="button" type="button" value="Add Image">
             Add Image
           </button>
         </div>
       </div>
       <div className="addbook__edit">
-        <button className="button" type="submit" value="Add Book" onClick={() => handleSubmit()}>
+        <button className="button" onClick={() => handleSubmit()} type="button">
           Add Book
         </button>
-        <button className="button" onClick={() => history.push('/')}>
+        <button
+          className="button"
+          onClick={() => history.push('/')}
+          type="button"
+        >
           Cancel
         </button>
       </div>

@@ -1,49 +1,99 @@
-import { NavLink } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useScrollToTop } from '../utils/hooks';
+import { deleteBook, getBook, getImage } from '../utils/API';
 import '../styles/details.scss';
 
 const Details = () => {
+  useScrollToTop();
+  const { id } = useParams();
+  const history = useHistory();
+
+  const [bookData, setBookData] = useState({});
+
+  useEffect(() => {
+    getBook(id)
+      .then((response) => {
+        const { title, author, published, rating, synopsis, image } = response.data;
+        return setBookData((prevState) => ({
+          ...prevState,
+          title,
+          author,
+          published,
+          rating,
+          synopsis,
+          image,
+        }));
+      })
+      .catch((error) => {
+        console.log('An error has occurred.', error);
+        return history.push('/bookshelf');
+      });
+  }, []);
+
+  const handleDelete = () => {
+    deleteBook(id)
+      .then(() => history.push('/bookshelf'))
+      .catch((error) => {
+        console.log('An error has occured', error);
+        throw error;
+      });
+  };
+
+  const { title, author, published, pages, synopsis, image, rating } = bookData;
+
+  const ratingDisplay = [1, 2, 3, 4, 5].map((r) => {
+    return (
+      <span
+        key={`rating_${r}`}
+        className={`fa fa-star ${rating >= r ? 'fa-star--checked' : ''}`}
+      />
+    );
+  });
+
   return (
     <section className="details">
       <div className="details__container">
         <div className="details__bookcover">
-          {/* <img src="./assets/images/enders_game_cover.jpg" alt="book_cover" /> */}
-          <img />
-          <div>
-            <span className="fa fa-star fa-star--checked" />
-            <span className="fa fa-star fa-star--checked" />
-            <span className="fa fa-star fa-star--checked" />
-            <span className="fa fa-star" />
-            <span className="fa fa-star" />
-          </div>
+          <img src={getImage(title)} alt={image} />
+          <div>{ratingDisplay}</div>
         </div>
 
         <div className="details__info">
-          <h2 className="details__info__title">Ender's Game</h2>
-          <h3>Orson Scott</h3>
+          <h2 className="details__info__title">{title}</h2>
+          <h3>{author}</h3>
           <p>
-            <em>Published: January 1985</em>
+            <em>Published: {published}</em>
           </p>
           <p>
-            <em>324 pages</em>
+            <em>{pages}</em>
           </p>
-          <p>
-            In the future, humanity has mastered interplanetary spaceflight and
-            as they explore the galaxy, they encounter an insect-like alien race
-            called the Formics. After discovering a Formic base on asteroid
-            Eros, war breaks out between the humans and Formics. The humans
-            achieve a narrow victory, but fearing future threats of a Formic
-            invasion, create the International Fleet (I.F.) and train gifted
-            children to become commanders at their orbiting Battle School.
-          </p>
+          <p>{synopsis} </p>
         </div>
       </div>
       <div className="details__edit">
-        <NavLink className="button" to="/edit">
+        <button
+          className="button"
+          onClick={() => history.push(`/edit/${id}`)}
+          type="button"
+        >
           Edit Book
-        </NavLink>
-        <NavLink className="button" to="/bookshelf">
+        </button>
+        <button
+          className="button"
+          onClick={() => history.push(`/bookshelf`)}
+          type="button"
+        >
           Back to Shelf
-        </NavLink>
+        </button>
+
+        <button
+          className="button button--delete"
+          onClick={() => handleDelete()}
+          type="button"
+        >
+          Delete Book
+        </button>
       </div>
     </section>
   );

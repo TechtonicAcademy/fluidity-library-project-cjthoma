@@ -26,14 +26,21 @@ button {
     margin: 10px 0;
     text-decoration: none;
     box-shadow: 5px 5px 5px black;
-}
+    transition: all 0.5s ease;
 
-.button--alt {
-    color: white;
-    background: #383636;
-}
+    &--alt {
+        color: white;
+        background: #383636;
+    }
 
-.button--delete {
-    color: white;
-    background: crimson;
+    &--delete {
+        color: white;
+        background: crimson;
+    }
+
+    &:hover {
+        cursor: pointer;
+        border: 2px variables.$text solid;
+        background-color: rgba($color: variables.$background, $alpha: 0.85);
+    }
 }
