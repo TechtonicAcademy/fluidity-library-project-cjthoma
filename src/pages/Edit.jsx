@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { useHistory, useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router-dom';
 import { editBook, deleteBook, getBook, getImage } from '../utils/API';
 
 import '../styles/edit.scss';
@@ -19,9 +19,9 @@ const Edit = () => {
   useEffect(() => {
     if (window.pageYOffset > 0) window.scroll(0, 0);
     getBook(id)
-      .then((bookData) => {
+      .then((response) => {
         const { title, author, published, rating, synopsis, pages, image } =
-          bookData.data;
+          response.data;
         return setBookData((prevState) => ({
           ...prevState,
           title,
