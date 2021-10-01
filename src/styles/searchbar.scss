@@ -1,0 +1,93 @@
+@use './variables.scss'; 
+
+.searchbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  align-items: center;
+  width: 30%;
+  padding: 0 20px;
+
+  input {
+    width: 80%;
+    height: 30px;
+  }
+
+  button {
+    width: 50px;
+    height: 36px;
+    box-shadow: unset;
+  }
+
+  &--desktop {
+    // display: unset;
+  }
+
+  &--mobile {
+    display: none;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    width: 80%;
+    padding-bottom: 30px;
+    white-space: nowrap;
+
+    input {
+        width: 60%;
+        height: 30px;
+    }
+  }
+}
+
+.clearSearch {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: maroon;
+  transform: translateX(-45px);
+  font-size: 15px;
+  cursor: pointer;
+
+  border: unset;
+  background: unset;
+
+  &:hover {
+    color: crimson;
+  }
+}
+
+
+// -- !Media Queries - //
+
+// Lg-desktop 1025px - 1200px
+// Md-laptop 769px - 1024px
+// mobile  375px - 480px
+@media only screen and (max-width: 1024px) { // med desktop sizing... anything less than 1024px gets these styles
+
+} 
+
+@media only screen and (max-width: 480px) { // mobile sizing... anything less than 480px gets these styles
+  .searchbar {
+    display: unset;
+    // width: 20%;
+
+    &--desktop {
+      display: none;
+    }
+
+    &--mobile {
+      position: relative;
+      left: 20px;
+      display: flex;
+      width: 350px;
+    }
+  }
+
+  .clearSearch {
+    position: relative;
+    transform: translateX(-95px);
+
+  }
+} 

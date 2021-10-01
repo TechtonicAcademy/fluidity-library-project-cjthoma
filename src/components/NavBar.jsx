@@ -1,8 +1,10 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useHistory, useLocation } from 'react-router-dom';
+import { useRef } from 'react';
+import SearchBar from './SearchBar';
 import '../styles/navbar.scss';
 
-
 const NavBar = () => {
+  const history = useHistory();
   const location = useLocation().pathname;
 
   let title = 'The Library';
@@ -12,7 +14,9 @@ const NavBar = () => {
 
   return (
     <nav className="navbar">
-      <h2 className="navbar__title">{title}</h2>
+      <h2 className="navbar__title" onClick={() => history.push('/')}>
+        {title}
+      </h2>
       <div className="navbar__container">
         <NavLink
           isActive={() => location === '/'}
@@ -38,12 +42,7 @@ const NavBar = () => {
         </NavLink>
       </div>
 
-      <div className="navbar__searchbar">
-        <input type="text" placeholder="Search.." />
-        <button className="button" type="submit" value="Go">
-          Go
-        </button>
-      </div>
+      <SearchBar type="desktop" />
       {/* MOBILE MENU */}
       <div className="navbar__menu" />
     </nav>

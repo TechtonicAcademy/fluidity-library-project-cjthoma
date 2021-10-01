@@ -158,25 +158,25 @@ const Edit = () => {
             alt={image}
             style={{ width: 170, height: 235 }}
           />
-          <button className="button" type="submit">
+          <button className="button" type="button">
             Change Image
           </button>
         </div>
       </div>
       <div className="edit__edit">
-        <button className="button" type="submit" onClick={() => handleSubmit()}>
+        <button className="button" type="button" onClick={() => handleSubmit()}>
           Submit
         </button>
         <button
           className="button--alt"
-          type="submit"
+          type="button"
           onClick={() => history.push(`/details/${id}`)}
         >
           Cancel
         </button>
         <button
           className="button--delete"
-          type="submit"
+          type="button"
           value="Add Image"
           onClick={() => handleDelete()}
         >

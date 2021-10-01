@@ -1,14 +1,18 @@
 import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { useScrollToTop } from '../utils/hooks';
-import { Link } from 'react-router-dom';
 import { getBooks } from '../utils/API';
+import SearchBar from '../components/SearchBar';
 
 import '../styles/bookshelf.scss';
 import Book from '../components/Book';
 
 const BookShelf = () => {
   useScrollToTop();
-  const [books, setBooks] = useState([]);
+  let [books, setBooks] = useState([]);
+
+  const location = useLocation();
+  const searchTerm = location.state;
 
   useEffect(() => {
     getBooks()
@@ -16,15 +20,16 @@ const BookShelf = () => {
       .catch((error) => console.log(error));
   }, []);
 
+  if (searchTerm) {
+    books = books.filter((book) => {
+      return book.title.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+  }
+
   return (
     <section className="bookshelf">
       <h3 className="bookshelf__title">Knowledge is Power!</h3>
-      <div className="bookshelf__searchbar--mobile">
-        <input type="text" placeholder="Search.." />
-        <button type="button" value="Go">
-          Go
-        </button>
-      </div>
+      <SearchBar type="mobile" />
       {books.length ? (
         <section className="bookshelf__container">
           {books.map(({ title, author, synopsis, image, id }) => (

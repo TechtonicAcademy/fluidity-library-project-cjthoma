@@ -18,6 +18,7 @@
       text-align: left;
       font-size: 20px;
       padding-left: 20px;
+      cursor: pointer;
   }
 
   &__container {
@@ -45,32 +46,9 @@
       display: none;
   }
 
-  &__searchbar {
-      display: flex;
-      justify-content: right;
-      align-items: center;
-      width: 30%;
-      padding: 0 20px;
-
-      input {
-        width: 80%;
-        height: 30px;
-      }
-
-      button {
-        width: 50px;
-        height: 36px;
-        box-shadow: unset;
-      }
-  }
-
   &__menu { // mobile navbar menu
     display: none;
   }
-}
-
-.navbar__searchbar--mobile {
-  display: none;
 }
 
 .activeClassName {
@@ -103,11 +81,6 @@
     
         &__link { // nav bar li
             display: none;
-        }
-    
-        &__searchbar {
-            display: none;
-            // width: 20%;
         }
 
         &__menu { // mobile navbar menu
