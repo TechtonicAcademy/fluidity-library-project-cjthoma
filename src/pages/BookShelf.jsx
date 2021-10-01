@@ -25,7 +25,7 @@ const BookShelf = () => {
           Go
         </button>
       </div>
-      {books ? (
+      {books.length ? (
         <section className="bookshelf__container">
           {books.map(({ title, author, synopsis, image, id }) => (
             <Book
