@@ -25,9 +25,10 @@
 
   h3 { // book title
       margin: 0;
-      font-size: 22px;
+      font-size: 20px;
       text-align: center;
       text-decoration: underline;
+      white-space: nowrap;
   }
 
   h4 { // book author

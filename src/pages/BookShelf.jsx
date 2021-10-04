@@ -9,30 +9,41 @@ import Book from '../components/Book';
 
 const BookShelf = () => {
   useScrollToTop();
-  let [books, setBooks] = useState([]);
+  const [books, setBooks] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
 
   const location = useLocation();
   const searchTerm = location.state;
 
   useEffect(() => {
     getBooks()
-      .then(({ data: books }) => setBooks(books))
+      .then((response) => {
+        setBooks(response.data);
+        setSearchResults(response.data);
+      })
       .catch((error) => console.log(error));
   }, []);
 
-  if (searchTerm) {
-    books = books.filter((book) => {
-      return book.title.toLowerCase().includes(searchTerm.toLowerCase());
-    });
-  }
+  useEffect(() => {
+    if (searchTerm) {
+      const searchResultsArr = books.filter((book) => {
+        if (book.title.toLowerCase().includes(searchTerm.toLowerCase()))
+          return book.title.toLowerCase().includes(searchTerm.toLowerCase());
+        if (book.author.toLowerCase().includes(searchTerm.toLowerCase()))
+          return book.author.toLowerCase().includes(searchTerm.toLowerCase());
+      });
+
+      setSearchResults(searchResultsArr);
+    } else setSearchResults(books);
+  }, [searchTerm, books]);
 
   return (
     <section className="bookshelf">
       <h3 className="bookshelf__title">Knowledge is Power!</h3>
       <SearchBar type="mobile" />
-      {books.length ? (
+      {searchResults.length ? (
         <section className="bookshelf__container">
-          {books.map(({ title, author, synopsis, image, id }) => (
+          {searchResults.map(({ title, author, synopsis, image, id }) => (
             <Book
               key={id}
               author={author}

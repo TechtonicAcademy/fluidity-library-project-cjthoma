@@ -8,7 +8,7 @@ const Book = ({ title, author, synopsis, image, id }) => {
   return (
     <NavLink className="book" to={`/details/${id}`}>
       <img src={getImage(title)} alt={image} />
-      <h3>{title}</h3>
+      <h3>{title.length > 17 ? `${title.slice(0, 17)}...` : title}</h3>
       <h4>{author}</h4>
     </NavLink>
   );
