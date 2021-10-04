@@ -7,15 +7,9 @@ import '../styles/book.scss';
 const Book = ({ title, author, synopsis, image, id }) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
-  useEffect(() => {
-    window.addEventListener('mousemove', (event) => {
-      setMousePosition((prevState) => ({
-        ...prevState,
-        x: event.pageX,
-        y: event.pageY,
-      }));
-    });
-  }, []);
+  // useEffect(() => {
+
+  // }, []);
 
   return (
     <NavLink className="book" to={`/details/${id}`}>
