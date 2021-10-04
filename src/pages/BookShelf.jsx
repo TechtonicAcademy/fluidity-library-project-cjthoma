@@ -26,14 +26,14 @@ const BookShelf = () => {
 
   useEffect(() => {
     if (searchTerm) {
-      const searchResultsArr = books.filter((book) => {
-        if (book.title.toLowerCase().includes(searchTerm.toLowerCase()))
-          return book.title.toLowerCase().includes(searchTerm.toLowerCase());
-        if (book.author.toLowerCase().includes(searchTerm.toLowerCase()))
-          return book.author.toLowerCase().includes(searchTerm.toLowerCase());
+      setSearchResults(() => {
+        return books.filter((book) => {
+          return (
+            book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            book.author.toLowerCase().includes(searchTerm.toLowerCase())
+          );
+        });
       });
-
-      setSearchResults(searchResultsArr);
     } else setSearchResults(books);
   }, [searchTerm, books]);
 
