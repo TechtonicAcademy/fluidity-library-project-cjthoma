@@ -99,7 +99,7 @@
 // Md-laptop 769px - 1024px
 // mobile  375px - 480px
 @media only screen and (max-width: 1024px) { // med desktop sizing... anything less than 1024px gets these styles
-    .edit {
+    .inputForm {
         &__container {
     
             &__input {
@@ -139,7 +139,7 @@
 } 
 
 @media only screen and (max-width: 480px) { // mobile sizing... anything less than 480px gets these styles
-    .edit {
+    .inputForm {
         padding: 50px;
     
         &__title {

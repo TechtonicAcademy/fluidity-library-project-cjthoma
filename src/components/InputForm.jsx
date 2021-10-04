@@ -144,7 +144,7 @@ const InputForm = ({ type }) => {
               alt={image}
               style={{ width: 170, height: 235 }}
             />
-            <button type="button">Change Image</button>
+            <button className="button" type="button">Change Image</button>
           </label>
 
           <label

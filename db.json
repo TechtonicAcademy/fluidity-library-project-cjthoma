@@ -29,15 +29,6 @@
       "image": "ready_player_one_cover",
       "rating": 3,
       "id": 3
-    },
-    {
-      "title": "Testin",
-      "author": "Testing",
-      "synopsis": "Testing this book some more.",
-      "published": "2021-10-04",
-      "pages": "12",
-      "rating": 2,
-      "id": 4
     }
   ]
 }
