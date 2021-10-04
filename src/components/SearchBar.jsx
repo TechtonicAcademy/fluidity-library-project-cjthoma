@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useHistory, useLocation } from 'react-router-dom';
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import '../styles/searchbar.scss';
 
 const SearchBar = ({ type }) => {
@@ -9,7 +9,8 @@ const SearchBar = ({ type }) => {
   const searchTerm = location.state;
   const searchRef = useRef();
 
-  const handleSearchSubmit = () => {
+  const handleSearchSubmit = (event) => {
+    event.preventDefault();
     const input = searchRef.current.value;
     history.push({
       pathname: '/bookshelf',
@@ -26,11 +27,15 @@ const SearchBar = ({ type }) => {
 
   return (
     <div className={`searchbar searchbar--${type}`}>
-      <input ref={searchRef} type="text" placeholder={searchTerm ? searchTerm : 'Search...'} />
+      <input
+        ref={searchRef}
+        type="text"
+        placeholder={searchTerm ? searchTerm : 'Search...'}
+      />
       <button
         className="button"
-        type="button"
-        onClick={() => handleSearchSubmit()}
+        type="submit"
+        onClick={(event) => handleSearchSubmit(event)}
       >
         Go
       </button>
