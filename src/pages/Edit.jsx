@@ -104,12 +104,22 @@ const Edit = () => {
         <div>
           <div className="edit__container__input">
             <h3>Title</h3>
-            <input ref={titleInputRef} type="text" placeholder={title} />
+            <input
+              ref={titleInputRef}
+              type="text"
+              placeholder={title}
+              defaultValue={title}
+            />
           </div>
 
           <div className="edit__container__input">
             <h3>Author</h3>
-            <input ref={authorInputRef} type="text" placeholder={author} />
+            <input
+              ref={authorInputRef}
+              type="text"
+              placeholder={author}
+              defaultValue={author}
+            />
           </div>
 
           <div className="edit__container__addimage edit__container__addimage--mobile">
@@ -127,6 +137,7 @@ const Edit = () => {
               ref={synopsisInputRef}
               resize="false"
               placeholder={synopsis}
+              defaultValue={synopsis}
             />
           </div>
 
@@ -137,12 +148,18 @@ const Edit = () => {
                 ref={publishedInputRef}
                 type="date"
                 placeholder={published}
+                defaultValue={published}
               />
             </div>
 
             <div className="edit__container__input">
               <h3>Pages</h3>
-              <input ref={pagesInputRef} type="number" placeholder={pages} />
+              <input
+                ref={pagesInputRef}
+                type="number"
+                placeholder={pages}
+                defaultValue={pages}
+              />
             </div>
           </div>
 
