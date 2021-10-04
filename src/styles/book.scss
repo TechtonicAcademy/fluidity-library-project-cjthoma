@@ -35,35 +35,10 @@
       font-size: 15px;
   }
 
-  p { // synopsis
-    display: none;
-    position: absolute;
-    width: 200px;
-    font-size: 12px;
-    background-color: variables.$background;
-    color: variables.$text;
-    padding: 15px 20px;
-    overflow: hidden;
-    box-shadow: inset 3px 3px 0px variables.$primary;
-    z-index: 3;
-
-    span {
-      margin-top: 10px;
-      padding: 5px;
-      display: block;
-      color: variables.$text;
-      background-color: variables.$primary;
-    }
-  }
-
   &:hover {
     img {
       transform: scale(1.10);
       box-shadow: 5px 5px 2px variables.$background;
-    }
-
-    p { // synopsis
-      display: unset;
     }
   }
 }
@@ -90,10 +65,6 @@
     height: 300px;
     width: 200px;
 
-    p { // synopsis
-      display: none;
-    }
-
     &:hover {
       img {
         height: 200px;
@@ -101,11 +72,6 @@
         margin: 25px 0 20px 0;
         transform: unset;
         box-shadow: unset;
-      }
-  
-      p { // synopsis
-
-        display: none;
       }
     }
   }
