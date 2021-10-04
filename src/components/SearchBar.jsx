@@ -19,8 +19,8 @@ const SearchBar = ({ type }) => {
   };
 
   const handleClearSearch = () => {
-    if (!searchTerm) return;
     searchRef.current.value = '';
+    if (!searchTerm) return;
     history.push('/bookshelf');
   };
 

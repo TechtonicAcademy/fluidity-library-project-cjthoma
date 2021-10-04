@@ -17,7 +17,8 @@ const InputForm = ({ type }) => {
   const publishedInputRef = useRef();
   const pagesInputRef = useRef();
 
-  const handleSubmit = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
     const title = titleInputRef.current.value
       ? titleInputRef.current.value
       : bookData.title;
@@ -64,7 +65,7 @@ const InputForm = ({ type }) => {
       addBook({ title, author, synopsis, published, pages, rating })
         .then(() => history.push(`/bookshelf`))
         .catch((error) => {
-          console.log('An error has occured.', error);
+          console.log('An error has occurred.', error, title, author, synopsis, published, pages, rating);
           throw error;
         });
     }
@@ -211,8 +212,8 @@ const InputForm = ({ type }) => {
           <>
             <button
               className="button"
-              type="button"
-              onClick={() => handleSubmit()}
+              type="submit"
+              onClick={(event) => handleSubmit(event)}
             >
               Submit
             </button>
@@ -236,8 +237,8 @@ const InputForm = ({ type }) => {
           <>
             <button
               className="button"
-              type="button"
-              onClick={() => handleSubmit()}
+              type="submit"
+              onClick={(event) => handleSubmit(event)}
             >
               Add Book
             </button>

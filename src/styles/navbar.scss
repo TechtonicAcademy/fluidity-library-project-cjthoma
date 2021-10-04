@@ -18,7 +18,10 @@
       text-align: left;
       font-size: 20px;
       padding-left: 20px;
+      color: variables.$text;
       cursor: pointer;
+      border: none;
+      background: unset;
   }
 
   &__container {

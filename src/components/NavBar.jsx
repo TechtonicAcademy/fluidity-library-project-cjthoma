@@ -12,7 +12,6 @@ const NavBar = () => {
   const { x } = navPos;
 
   const togleMobileNav = () => {
-    console.log('click')
     if (x === '0%') return setNavPos(() => ({ x: '-100%' })); // toggle off if on
     return setNavPos(() => ({ x: '0%' }));
   };
@@ -24,9 +23,13 @@ const NavBar = () => {
 
   return (
     <nav className="navbar">
-      <h2 className="navbar__title" onClick={() => history.push('/')}>
+      <button
+        type="button"
+        className="navbar__title"
+        onClick={() => history.push('/')}
+      >
         {title}
-      </h2>
+      </button>
       <div className="navbar__container">
         <NavLink
           isActive={() => location === '/'}
@@ -67,7 +70,6 @@ const NavBar = () => {
         >
           ✕
         </button>
-
         <NavLink
           isActive={() => location === '/'}
           activeClassName="navbarMobile__link--selected"
