@@ -66,6 +66,7 @@ const AddBook = () => {
   const ratingDisplay = [1, 2, 3, 4, 5].map((r) => {
     return (
       <span
+        key={`rating-${r}`}
         className={`fa fa-star ${rating >= r ? 'fa-star--checked' : ''}`}
         onClick={() => handleRating(r)} />
     );
