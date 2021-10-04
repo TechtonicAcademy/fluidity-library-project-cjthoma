@@ -53,6 +53,7 @@
         padding-top: 50px;
 
         button { // all child anchors
+            box-shadow: 4px 4px 7px black;
             margin: 0 20px;
         }
     }
@@ -107,7 +108,6 @@
                 display: flex;
                 justify-content: center;
                 padding: 20px 0;
-                text-shadow: 5px 5px 3px black;
             }
     
             img {
@@ -145,7 +145,6 @@
             
             button {
                 margin: 10px 0;
-                box-shadow: 4px 4px 7px black;
             }
         }
     }

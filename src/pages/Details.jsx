@@ -1,7 +1,6 @@
 import { useHistory, useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import { useScrollToTop } from '../utils/hooks';
-import { deleteBook, getBook, getImage } from '../utils/API';
+import { useScrollToTop, useGetBookDataOnload } from '../utils/hooks';
+import { deleteBook, getImage } from '../utils/API';
 import '../styles/details.scss';
 
 const Details = () => {
@@ -9,27 +8,7 @@ const Details = () => {
   const { id } = useParams();
   const history = useHistory();
 
-  const [bookData, setBookData] = useState({});
-
-  useEffect(() => {
-    getBook(id)
-      .then((response) => {
-        const { title, author, published, rating, synopsis, image } = response.data;
-        return setBookData((prevState) => ({
-          ...prevState,
-          title,
-          author,
-          published,
-          rating,
-          synopsis,
-          image,
-        }));
-      })
-      .catch((error) => {
-        console.log('An error has occurred.', error);
-        return history.push('/bookshelf');
-      });
-  }, []);
+  const { bookData } = useGetBookDataOnload(id);
 
   const handleDelete = () => {
     deleteBook(id)
@@ -80,7 +59,7 @@ const Details = () => {
           Edit Book
         </button>
         <button
-          className="button"
+          className="button--alt"
           onClick={() => history.push(`/bookshelf`)}
           type="button"
         >
@@ -88,7 +67,7 @@ const Details = () => {
         </button>
 
         <button
-          className="button button--delete"
+          className="button--delete"
           onClick={() => handleDelete()}
           type="button"
         >

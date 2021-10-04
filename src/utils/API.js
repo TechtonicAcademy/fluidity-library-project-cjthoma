@@ -16,6 +16,14 @@ export const addBook = (bookData) => {
   });
 };
 
+export const editBook = (id, bookData) => {
+  return axios.patch(`http://localhost:3000/books/${id}`, bookData, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+};
+
 export const deleteBook = (id) => {
   return axios.delete(`http://localhost:3000/books/${id}`);
 };
