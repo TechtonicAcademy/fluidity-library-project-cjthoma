@@ -168,14 +168,14 @@ const Edit = () => {
           Submit
         </button>
         <button
-          className="button--alt"
+          className="button button--alt"
           type="button"
           onClick={() => history.push(`/details/${id}`)}
         >
           Cancel
         </button>
         <button
-          className="button--delete"
+          className="button button--delete"
           type="button"
           value="Add Image"
           onClick={() => handleDelete()}

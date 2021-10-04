@@ -128,7 +128,7 @@ const AddBook = () => {
           Add Book
         </button>
         <button
-          className="button"
+          className="button button--alt"
           onClick={() => history.push('/')}
           type="button"
         >

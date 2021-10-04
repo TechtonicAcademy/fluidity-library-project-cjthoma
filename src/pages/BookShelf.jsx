@@ -45,8 +45,8 @@ const BookShelf = () => {
         </section>
       ) : (
         <section className="bookshelf__container">
-          The Library is empty,{' '}
-          <Link to="/add">add a few books to get things started!</Link>
+          We couldn't find that book,
+          <Link to="/add">visit our add page to expand our collection!</Link>
         </section>
       )}
     </section>
