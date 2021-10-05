@@ -6,3 +6,5 @@ node_modules/
 .vscode/
 .cache/ 
 .parcel-cache/
+
+client/node_modules/
