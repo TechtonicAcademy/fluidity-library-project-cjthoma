@@ -13,6 +13,8 @@ export function useGetBookDataOnload(id) {
   const history = useHistory();
   const [bookData, setBookData] = useState({});
 
+  if (!id) return { bookData, setBookData };
+
   useEffect(() => {
     getBook(id)
       .then((response) => {

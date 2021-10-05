@@ -59,7 +59,7 @@ const Details = () => {
           Edit Book
         </button>
         <button
-          className="button--alt"
+          className="button button--alt"
           onClick={() => history.push(`/bookshelf`)}
           type="button"
         >
@@ -67,7 +67,7 @@ const Details = () => {
         </button>
 
         <button
-          className="button--delete"
+          className="button button--delete"
           onClick={() => handleDelete()}
           type="button"
         >

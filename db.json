@@ -14,7 +14,7 @@
       "title": "The Martian",
       "author": "Andy Weir",
       "synopsis": "In 2035, the crew of NASA's Ares 3 mission have arrived at Acidalia Planitia for a planned month-long stay on Mars. After only six sols, an intense dust and wind storm threatens to topple their Mars Ascent Vehicle (MAV), which would trap them on the planet. During the hurried evacuation, an antenna tears loose and impales astronaut Mark Watney, a botanist and engineer, also disabling his spacesuit radio. He is flung out of sight by the wind and presumed dead. As the MAV teeters dangerously, mission commander Melissa Lewis has no choice but to take off without completing the search for Watney.",
-      "pages": 369,
+      "pages": "369",
       "published": "2011-01-01",
       "image": "enders_game_cover",
       "rating": 4,
@@ -31,13 +31,31 @@
       "id": 3
     },
     {
-      "title": "Testin",
-      "author": "Testing",
-      "synopsis": "Testing this book some more.",
-      "published": "2021-10-04",
-      "pages": "12",
-      "rating": 2,
+      "title": "Speaker For the Dead",
+      "author": "Orson Scott",
+      "synopsis": "Some years after the events of Ender's Game, Ender Wiggin writes a book called The Hive Queen, describing the life of the Formics as described to him by the dormant Formic Queen whom he secretly carries. As humanity uses light-speed travel to establish new colonies, Ender and his sister Valentine age slowly through relativistic travel.",
+      "published": "1986-03-01",
+      "pages": "415",
+      "rating": 3,
       "id": 4
+    },
+    {
+      "title": "1984",
+      "author": "George Orwell",
+      "synopsis": "In 1984, civilization has been ravaged by world war, civil conflict, and revolution. Airstrip One (formerly known as Great Britain) is a province of Oceania, one of the three totalitarian super-states that rule the world. It is ruled by the \"Party\" under the ideology of \"Ingsoc\" and the mysterious leader Big Brother, who has an intense cult of personality. The Party brutally purges out anyone who does not fully conform to their regime using the Thought Police and constant surveillance through telescreens (two-way televisions), cameras, and hidden microphones. Those who fall out of favor with the Party become \"unpersons\", disappearing with all evidence of their existence destroyed. ",
+      "published": "1949-06-08",
+      "pages": "328",
+      "rating": 4,
+      "id": 5
+    },
+    {
+      "title": "The Thing",
+      "author": "Alan Dean Foster",
+      "synopsis": "What if aliens did actually land on Earth thousands of years ago and had frozen in the Antarctic ice? What if those aliens could take over a person's body and literally duplicate that person so completely that no one would know or could tell the difference? What would you do? How would you act? That's the scenario faced by a group of researchers in Antarctica who discover that another outpost has been wiped out by murder and suicide in an attempt to stop the alien that they dug up from escaping and spreading to another unsuspecting outpost.",
+      "published": "1981-01-01",
+      "pages": "200",
+      "rating": 2,
+      "id": 6
     }
   ]
 }
