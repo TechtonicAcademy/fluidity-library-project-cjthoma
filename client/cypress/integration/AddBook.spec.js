@@ -22,7 +22,7 @@ describe('library-tests add-book', () => {
     });
 
     cy.get('.fa-star').should(($ratingDisplay) => {
-      const display = $ratingDisplay[Math.floor(Math.random() * ($ratingDisplay.length - 0 + 1)) + 0];
+      const display = $ratingDisplay[2];
       display.click();
     });
 
@@ -59,7 +59,7 @@ describe('library-tests add-book', () => {
     cy.get('#synopsis').type('test_synopsis'); // set synopsis
     cy.get('#pages').type(1); // set pages
     cy.get('.fa-star').should(($ratingDisplay) => {
-      const display = $ratingDisplay[Math.floor(Math.random() * ($ratingDisplay.length - 0 + 1)) + 0];
+      const display = $ratingDisplay[2];
       display.click();
     });
 
@@ -79,7 +79,7 @@ describe('library-tests add-book', () => {
     cy.get('#synopsis').type('test_synopsis'); // set synopsis
     cy.get('#pages').type(1); // set pages
     cy.get('.fa-star').should(($ratingDisplay) => {
-      const display = $ratingDisplay[Math.floor(Math.random() * ($ratingDisplay.length - 0 + 1)) + 0];
+      const display = $ratingDisplay[2];
       display.click();
     });
 
