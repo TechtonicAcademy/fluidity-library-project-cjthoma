@@ -3,11 +3,10 @@
 .details {
     display: flex;
     flex-direction: column;
-    padding-bottom: 40px;
     background-color: variables.$text;
     color: variables.$background;
     box-shadow: inset 0px 2px 2px black, inset 0px -2px 2px black;
-    padding: 100px;
+    padding: 100px 0 40px 0;
 
     &__container {
         display: flex;
@@ -95,7 +94,6 @@
 @media only screen and (max-width: 480px) { // mobile sizing... anything less than 480px gets these styles
     .details {
         display: flex;
-        padding-bottom: 40px;
         padding: 50px 0;
     
         &__container {
