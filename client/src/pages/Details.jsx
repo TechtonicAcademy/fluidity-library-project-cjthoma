@@ -40,7 +40,7 @@ const Details = () => {
 
         <div className="details__info">
           <h2 className="details__info__title">{title}</h2>
-          <h3>{author}</h3>
+          <h3 id="author">{author}</h3>
           <p>
             <em>Published: {published}</em>
           </p>
