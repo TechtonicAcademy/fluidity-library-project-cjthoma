@@ -227,7 +227,6 @@ const InputForm = ({ type }) => {
             <button
               className="button button--delete"
               type="button"
-              value="Add Image"
               onClick={() => handleDelete()}
             >
               Delete Book
