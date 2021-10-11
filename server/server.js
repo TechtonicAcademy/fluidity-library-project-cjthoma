@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('../clinet/dist'));
+  app.use(express.static('../client/dist'));
 }
 
 app.get('/', (req, res) => {
