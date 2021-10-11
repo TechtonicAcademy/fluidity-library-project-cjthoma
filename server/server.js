@@ -1,6 +1,7 @@
 const express = require('express');
 const logger = require('morgan');
 const cors = require('cors');
+const { Author, Book, sequelize } = require('./models');
 
 const app = new express();
 const PORT = process.env.PORT || 8080;
@@ -22,6 +23,8 @@ app.get('/', (req, res) => {
   res.send('this is the api.');
 });
 
-app.listen(PORT, () => {
-  console.log(`API server listening on http://localhost:${PORT}!`);
+sequelize.sync().then(() => {
+  app.listen(PORT, () => {
+    console.log(`API server listening on http://localhost:${PORT}!`);
+  });
 });
