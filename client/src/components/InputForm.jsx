@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useHistory, useParams } from 'react-router-dom';
 import { editBook, addBook, deleteBook, getImage } from '../utils/API';
 import { useGetBookDataOnload } from '../utils/hooks';
+import handleAddImage from '../utils/handleAddImage';
 
 import '../styles/inputForm.scss';
 
@@ -140,12 +141,14 @@ const InputForm = ({ type }) => {
             htmlFor="change_image"
             className="edit__container__addimage edit__container__addimage--mobile"
           >
-            <img
-              src={getImage(title)}
-              alt={image}
-              style={{ width: 170, height: 235 }}
+            <img src={image} alt={image} style={{ width: 170, height: 235 }} />
+            <input
+              className="button"
+              type="file"
+              onChange={(event) =>
+                handleAddImage(event.target.files[0], setBookData)
+              }
             />
-            <button className="button" type="button">Change Image</button>
           </label>
 
           <label
@@ -196,14 +199,14 @@ const InputForm = ({ type }) => {
         </div>
 
         <div className="inputForm__container__addimage">
-          <img
-            src={getImage(title)}
-            alt={image}
-            style={{ width: 170, height: 235 }}
+          <img src={image}  alt={image} style={{ width: 170, height: 235 }} />
+          <input
+            className="button"
+            type="file"
+            onChange={(event) =>
+              handleAddImage(event.target.files[0], setBookData)
+            }
           />
-          <button className="button" type="button">
-            Change Image
-          </button>
         </div>
       </form>
 

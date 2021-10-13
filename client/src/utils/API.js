@@ -4,15 +4,15 @@
 import axios from 'axios';
 
 export const getBooks = () => {
-  return axios.get(`http://localhost:3000/books`);
+  return axios.get(`http://localhost:8080/api/book`);
 };
 
 export const getBook = (id) => {
-  return axios.get(`http://localhost:3000/books/${id}`);
+  return axios.get(`http://localhost:8080/api/book/${id}`);
 };
 
 export const addBook = (bookData) => {
-  return axios.post(`http://localhost:3000/books`, bookData, {
+  return axios.post(`http://localhost:8080/api/book`, bookData, {
     headers: {
       'Content-Type': 'application/json',
     },
@@ -20,7 +20,7 @@ export const addBook = (bookData) => {
 };
 
 export const editBook = (id, bookData) => {
-  return axios.patch(`http://localhost:3000/books/${id}`, bookData, {
+  return axios.patch(`http://localhost:8080/api/book/${id}`, bookData, {
     headers: {
       'Content-Type': 'application/json',
     },
@@ -28,7 +28,7 @@ export const editBook = (id, bookData) => {
 };
 
 export const deleteBook = (id) => {
-  return axios.delete(`http://localhost:3000/books/${id}`);
+  return axios.delete(`http://localhost:8080/api/book/${id}`);
 };
 
 export const getImage = (title) => {

@@ -1,7 +1,8 @@
 const express = require('express');
 const logger = require('morgan');
 const cors = require('cors');
-const { Author, Book, sequelize } = require('./models');
+const { sequelize } = require('./models');
+const routes = require('./routes');
 
 const app = new express();
 const PORT = process.env.PORT || 8080;
@@ -14,6 +15,7 @@ app.use(logger('dev'));
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(routes);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('../client/dist'));

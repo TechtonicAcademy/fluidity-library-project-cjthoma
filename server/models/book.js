@@ -51,7 +51,12 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   Book.associate = ({ Author }) => {
-    Book.belongsTo(Author);
+    Book.belongsTo(Author, {
+      onDelete: 'CASCADE',
+      foreingKey: {
+        allowNull: false,
+      },
+    });
   };
 
   return Book;
