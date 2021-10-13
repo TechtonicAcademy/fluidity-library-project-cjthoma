@@ -1,7 +1,7 @@
 const express = require('express');
 const logger = require('morgan');
 const cors = require('cors');
-const { Author, Book, sequelize } = require('./models');
+const { sequelize } = require('./models');
 
 const app = new express();
 const PORT = process.env.PORT || 8080;
