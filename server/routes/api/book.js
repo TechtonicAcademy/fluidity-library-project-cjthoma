@@ -4,7 +4,7 @@ const bookController = require('../../controlllers/bookController');
 
 const upload = multer({
   limits: {
-    fileSize: 100000,
+    fileSize: 800000,
   },
 });
 
