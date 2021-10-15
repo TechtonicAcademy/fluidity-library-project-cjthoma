@@ -4,12 +4,12 @@ const AWS = require('aws-sdk');
 const { Sequelize, Author, Book } = require('../models');
 
 AWS.config.update({ 
-  region: 'us-west-1',
+  region: process.env.BUCKET_REGION,
   accessKeyId: process.env.BUCKET_ACCESS_KEY,
   secretAccessKey: process.env.BUCKET_SECRET,
 });
 
-const s3 = new AWS.S3({ params: { Bucket: 'library-project'  } });
+const s3 = new AWS.S3({ params: { Bucket: process.env.BUCKET_NAME } });
 const upload = { 
   Key: '', 
   Body: '',
@@ -83,7 +83,7 @@ module.exports = {
   
       await Book.create({ 
         ...bookData, 
-        image: imageFile ? `https://library-project.s3.us-west-1.amazonaws.com/${upload.Key}` : null,
+        image: imageFile ? `https://${process.env.BUCKET_NAME}.s3.${process.env.BUCKET_REGION}.amazonaws.com/${upload.Key}` : null,
         AuthorId: author[0].dataValues.id 
       });
     } catch(error) {
@@ -115,7 +115,7 @@ module.exports = {
     }
 
     // if image updated add new, otherwise don't update
-    if(imageFile) bookData.image = `https://library-project.s3.us-west-1.amazonaws.com/${upload.Key}`;
+    if(imageFile) bookData.image = `https://${process.env.BUCKET_NAME}.s3.${process.env.BUCKET_REGION}.amazonaws.com/${upload.Key}`;
 
     try {
       const author = await Author.findOrCreate({
@@ -144,7 +144,7 @@ module.exports = {
         where: { id: req.params.id },
       });
 
-      const image = book.dataValues.image.replace('https://library-project.s3.us-west-1.amazonaws.com/', '');
+      const image = book.dataValues.image.replace(`https://${process.env.BUCKET_NAME}.s3.${process.env.BUCKET_REGION}.amazonaws.com/`, '');
       if(image) { // if book has image attached delete from s3 bucket
         s3.deleteObject({ Key: image }, (err, response) => {
           if (err) return console.log('An error has occured.', err);
