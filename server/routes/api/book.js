@@ -2,11 +2,7 @@ const router = require('express').Router();
 const multer = require('multer');
 const bookController = require('../../controlllers/bookController');
 
-const upload = multer({
-  limits: {
-    fileSize: 10000000,
-  },
-});
+const upload = multer();
 
 router
   .route('/')

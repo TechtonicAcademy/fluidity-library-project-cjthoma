@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import { getImage } from '../utils/API';
 import '../styles/book.scss';
 
 const Book = ({ title, first, last, image, id }) => {

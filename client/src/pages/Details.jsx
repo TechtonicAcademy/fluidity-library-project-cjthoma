@@ -1,6 +1,6 @@
 import { useHistory, useParams } from 'react-router-dom';
 import { useScrollToTop, useGetBookDataOnload } from '../utils/hooks';
-import { deleteBook, getImage } from '../utils/API';
+import { deleteBook } from '../utils/API';
 import '../styles/details.scss';
 
 const Details = () => {
