@@ -33,6 +33,7 @@
                 transition: width 1s ease;
             }
 
+
             &--synopsis {
                 height: 150px;
             }
@@ -92,6 +93,14 @@
         color: gold;
     }
 } 
+
+// input[type=file] {
+//     visibility: hidden;
+// }
+
+input[type=file] {
+    width: 100%;
+}
 
 // -- !Media Queries - //
 

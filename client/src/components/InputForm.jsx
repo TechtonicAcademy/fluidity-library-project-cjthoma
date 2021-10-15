@@ -245,7 +245,7 @@ const InputForm = ({ type }) => {
           <input
             id="addimage"
             name="addimage"
-            className="button"
+            // className="button"
             type="file"
             onChange={(event) =>
               handleAddImage(event.target.files[0], setBookData)
