@@ -11,24 +11,33 @@ export function useScrollToTop() {
 
 export function useGetBookDataOnload(id) {
   const history = useHistory();
-  const [bookData, setBookData] = useState({});
+  const [bookData, setBookData] = useState({ // set default place holder image
+    tmpImage:
+      'https://library-project.s3.us-west-1.amazonaws.com/default_book_cover.jpg',
+  });
 
   if (!id) return { bookData, setBookData };
 
   useEffect(() => {
     getBook(id)
       .then((response) => {
-        const { title, author, published, rating, synopsis, pages, image } =
+        const { title, Author, published, rating, synopsis, pages, image } =
           response.data;
+
+        let tmp = bookData.tmpImage;
+        if (image) tmp = image; // un-set default image if bookData contains valid image
+
         return setBookData((prevState) => ({
           ...prevState,
           title,
-          author,
+          first: Author.first_name,
+          last: Author.last_name,
           pages: parseInt(pages),
           published,
           rating,
           synopsis,
           image,
+          tmpImage: tmp,
         }));
       })
       .catch(() => {

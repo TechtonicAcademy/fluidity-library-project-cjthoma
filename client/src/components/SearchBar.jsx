@@ -10,7 +10,6 @@ const SearchBar = ({ type }) => {
   const searchRef = useRef();
 
   const handleSearchSubmit = (event) => {
-    event.preventDefault();
     const input = searchRef.current.value;
     history.push({
       pathname: '/bookshelf',

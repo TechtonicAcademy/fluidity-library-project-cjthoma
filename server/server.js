@@ -11,6 +11,12 @@ const corsOptions = {
   origin: 'http://localhost:1234',
 };
 
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   res.header('Access-Control-Allow-Headers', 'X-Requested-With');
+//   next();
+// });
+
 app.use(logger('dev'));
 app.use(cors(corsOptions));
 app.use(express.json());

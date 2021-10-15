@@ -1,16 +1,35 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable camelcase */
+const AWS = require('aws-sdk');
 const { Sequelize, Author, Book } = require('../models');
+
+AWS.config.update({ 
+  region: 'us-west-1',
+  accessKeyId: process.env.BUCKET_ACCESS_KEY,
+  secretAccessKey: process.env.BUCKET_SECRET,
+});
+
+const s3 = new AWS.S3({ params: { Bucket: 'library-project'  } });
+const upload = { 
+  Key: '', 
+  Body: '',
+  ContentDisposition: 'inline',
+  ContentType: 'image/jpeg',
+  ACL: 'public-read'
+};
 
 module.exports = {
   findAll: (req, res) => {
-    Book.findAll()
+    Book.findAll({
+      include: [Author],
+    })
     .then((response) => res.json(response))
     .catch((error) => res.status(500).json(error));
   },
 
   findById: (req, res) => {
     Book.findOne({
+      include: [Author],
       where: {
         id: req.params.id,
       },
@@ -19,15 +38,15 @@ module.exports = {
   },
 
   search: (req, res) => {
-    const { title, first_name, last_name } = req.query;
+    const { searchTerm } = req.params;
 
     Book.findAll({
       include: [Author],
       where: {
         [Sequelize.Op.or]: [
-          { title: { [Sequelize.Op.substring]: `%${title}%` } },
-          { '$Author.first_name$': { [Sequelize.Op.substring]: `%${first_name}%` } },
-          { '$Author.last_name$': { [Sequelize.Op.substring]: `%${last_name}%` } }
+          { title: { [Sequelize.Op.substring]: `%${searchTerm}%` } },
+          { '$Author.first_name$': { [Sequelize.Op.substring]: `%${searchTerm}%` } },
+          { '$Author.last_name$': { [Sequelize.Op.substring]: `%${searchTerm}%` } }
         ],
       },
     }).then((response) => {
@@ -37,9 +56,8 @@ module.exports = {
   },
 
   create: async (req, res) => {
-    let { first_name, last_name } = req.body;
-    first_name = req.body.author.split(' ')[0];
-    last_name = req.body.author.split(' ')[1];
+    const imageFile = req.file;
+    const { first, last } = req.body;
     const bookData = {
       title: req.body.title,
       synopsis: req.body.synopsis,
@@ -48,92 +66,97 @@ module.exports = {
       rating: req.body.rating,
     };
 
+    if (imageFile !== undefined) {
+      upload.Body = imageFile.buffer;
+      upload.Key = imageFile.originalname;
+
+      s3.upload(upload, (err, response) => {
+        if (err) return console.log('Error', err);
+        return console.log('Image Uploaded!', response.Location);
+      });
+    }
+
     try {
       const author = await Author.findOrCreate({
-        where: { first_name, last_name }
+        where: { first_name: first, last_name: last }
       });
   
-      await Book.create({ ...bookData, image: '', AuthorId: author[0].dataValues.id });
+      await Book.create({ 
+        ...bookData, 
+        image: imageFile ? `https://library-project.s3.us-west-1.amazonaws.com/${upload.Key}` : null,
+        AuthorId: author[0].dataValues.id 
+      });
     } catch(error) {
       res.status(500).json(error);
+      console.log('An error has occured.', error);
     };
     res.end();
   },
 
-  update: (req, res) => {
+  update: async (req, res) => {
+    const imageFile = req.file;
+    const { first, last } = req.body;
+    const bookData = {
+      title: req.body.title,
+      synopsis: req.body.synopsis,
+      published: req.body.published,
+      pages: req.body.pages,
+      rating: req.body.rating,
+    };
 
+    if (imageFile !== undefined) {
+      upload.Body = imageFile.buffer;
+      upload.Key = imageFile.originalname;
+
+      s3.upload(upload, (err, response) => {
+        if (err) return console.log('Error', err);
+        return console.log('Image Uploaded!', response.Location);
+      });
+    }
+
+    // if image updated add new, otherwise don't update
+    if(imageFile) bookData.image = `https://library-project.s3.us-west-1.amazonaws.com/${upload.Key}`;
+
+    try {
+      const author = await Author.findOrCreate({
+        where: { first_name: first, last_name: last }
+      });
+  
+      await Book.update({ 
+        ...bookData, 
+        AuthorId: author[0].dataValues.id 
+      }, { where: { id: req.params.id } });
+    } catch(error) {
+      res.status(500).json(error);
+      console.log('An error has occured.', error);
+    };
+
+    res.end();
   },
 
-  delete: (req, res) => {
-    Book.destroy({
-      where: { id: req.params.id },
-    })
-      .then(() => res.end())
-      .catch((error) => res.status(500).json(error));
+  delete: async (req, res) => {
+    try {
+      const book = await Book.findOne({ // get book data so image can be removed from s3 bucket
+        where: { id: req.params.id },
+      });
+
+      await Book.destroy({
+        where: { id: req.params.id },
+      });
+
+      const image = book.dataValues.image.replace('https://library-project.s3.us-west-1.amazonaws.com/', '');
+      if(image) {
+        s3.deleteObject({ Key: image }, (err, response) => {
+          if (err) return console.log('An error has occured.', err);
+          return console.log('Delete Success', response);
+        });
+      };
+
+    } catch (error) {
+      res.status(500).json(error);
+      console.log('An error has occured.', error);
+    }
+
+    res.end();
   },
 };
-
-// router.get('/author/:first_name/:last_name', (req, res) => {
-//   findByAuthor(req.params)
-//     .then((reponse) => res.json(reponse))
-//     .catch((err) => res.status(500).end());
-// });
-
-// router.get('/search', (req, res) => {
-
-// });
-
-// /* POST ROUTES */
-// router.post('/add', (req, res) => {
-//   const { first_name, last_name } = req.body;
-//   const bookData = {
-//     title: req.body.title,
-//     synopsis: req.body.synopsis,
-//     published: req.body.published,
-//     pages: req.body.pages,
-//     rating: req.body.rating,
-//     image: req.body.image,
-//   };
-
-//   findByAuthor(first_name, last_name)
-//     .then((findAuthorRes) => {
-//       if (findAuthorRes) {
-//         createBook({ ...bookData, AuthorId: findAuthorRes.dataValues.id }, res);
-//       }
-
-//       createAuthor({ first_name, last_name }).then((author) => {
-//         return createBook({ ...bookData, AuthorId: author.dataValues.id }, res);
-//       });
-//     })
-//     .catch(() => {
-//       res.status(500).end();
-//     });
-// });
-
-// /* FUNCTIONS */
-// function createBook(bookData, res) {
-//   return Book.create(bookData)
-//     .then((response) => {
-//       res.status(200).json(response);
-//     })
-//     .catch((error) => {
-//       res.status(500).send(error);
-//     });
-// };
-
-// function createAuthor (authorData) {
-//   return Author.create(authorData);
-// };
-
-// function findByAuthor (first_name, last_name) {
-//   return Author.findOne({
-//     where: {
-//       first_name: {
-//         [Sequelize.Op.substring]: `%${first_name}%`,
-//       },
-//       last_name: {
-//         [Sequelize.Op.substring]: `%${last_name}%`,
-//       },
-//     },
-//   });
-// };

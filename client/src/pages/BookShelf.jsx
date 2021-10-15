@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useScrollToTop } from '../utils/hooks';
-import { getBooks } from '../utils/API';
+import { getBooks, searchBook } from '../utils/API';
 import SearchBar from '../components/SearchBar';
 
 import '../styles/bookshelf.scss';
@@ -10,43 +10,34 @@ import Book from '../components/Book';
 const BookShelf = () => {
   useScrollToTop();
   const [books, setBooks] = useState([]);
-  const [searchResults, setSearchResults] = useState([]);
 
   const location = useLocation();
   const searchTerm = location.state;
 
   useEffect(() => {
-    getBooks()
-      .then((response) => {
-        setBooks(response.data);
-        setSearchResults(response.data);
-      })
-      .catch((error) => console.log(error));
-  }, []);
-
-  useEffect(() => {
     if (searchTerm) {
-      setSearchResults(() => {
-        return books.filter((book) => {
-          return (
-            book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            book.author.toLowerCase().includes(searchTerm.toLowerCase())
-          );
-        });
-      });
-    } else setSearchResults(books);
-  }, [searchTerm, books]);
+      return searchBook(searchTerm)
+        .then((response) => setBooks(response.data))
+        .catch((error) => console.log(error));
+    }
+
+    return getBooks()
+      .then((response) => setBooks(response.data))
+      .catch((error) => console.log(error));
+  }, [searchTerm]);
 
   return (
     <section className="bookshelf">
       <h3 className="bookshelf__title">Knowledge is Power!</h3>
       <SearchBar type="mobile" />
-      {searchResults.length ? (
+      {books.length ? (
         <section className="bookshelf__container">
-          {searchResults.map(({ title, author, synopsis, image, id }) => (
+          {books.map(({ title, Author, synopsis, image, id }) => (
             <Book
               key={id}
-              author={author}
+              author={Author}
+              first={Author.first_name}
+              last={Author.last_name}
               title={title}
               synopsis={synopsis}
               image={image}

@@ -1,21 +1,24 @@
 const router = require('express').Router();
+const multer = require('multer');
 const bookController = require('../../controlllers/bookController');
 
-// const multer = require('multer');
+const upload = multer({
+  limits: {
+    fileSize: 10000000,
+  },
+});
 
-// const formToRequest = multer({
-//   limits: {
-//     fileSize: 8000000,
-//   },
-// });
+router
+  .route('/')
+  .get(bookController.findAll)
+  .post(upload.single('image'), bookController.create);
 
-router.route('/').get(bookController.findAll).post(bookController.create);
-router.route('/search').get(bookController.search);
+router.route('/search/:searchTerm').get(bookController.search);
 
 router
   .route('/:id')
   .get(bookController.findById)
-  .put(bookController.update)
+  .put(upload.single('image'), bookController.update)
   .delete(bookController.delete);
 
 module.exports = router;
