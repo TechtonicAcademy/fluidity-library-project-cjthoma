@@ -145,7 +145,7 @@ module.exports = {
       });
 
       const image = book.dataValues.image.replace('https://library-project.s3.us-west-1.amazonaws.com/', '');
-      if(image) {
+      if(image) { // if book has image attached delete from s3 bucket
         s3.deleteObject({ Key: image }, (err, response) => {
           if (err) return console.log('An error has occured.', err);
           return console.log('Delete Success', response);

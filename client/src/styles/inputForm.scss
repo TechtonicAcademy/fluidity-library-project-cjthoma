@@ -94,10 +94,6 @@
     }
 } 
 
-// input[type=file] {
-//     visibility: hidden;
-// }
-
 input[type=file] {
     width: 100%;
 }
@@ -210,5 +206,9 @@ input[type=file] {
                 box-shadow: 4px 4px 7px black;
             }
         }
+    }
+
+    input[type=file] {
+        width: 73%;
     }
 } 

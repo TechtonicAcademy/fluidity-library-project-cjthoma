@@ -32,16 +32,14 @@ const BookShelf = () => {
       <SearchBar type="mobile" />
       {books.length ? (
         <section className="bookshelf__container">
-          {books.map(({ title, Author, synopsis, image, id }) => (
+          {books.map(({ title, Author, image, id }) => (
             <Book
               key={id}
-              author={Author}
+              id={id}
+              title={title}
               first={Author.first_name}
               last={Author.last_name}
-              title={title}
-              synopsis={synopsis}
               image={image}
-              id={id}
             />
           ))}
         </section>

@@ -115,8 +115,8 @@ const InputForm = ({ type }) => {
     setBookData((prevState) => ({ ...prevState, rating: target }));
   };
 
-  const { title, first, last, published, pages, synopsis, rating, tmpImage } = bookData;
-  console.log('data', bookData)
+  const { title, first, last, published, pages, synopsis, rating, tmpImage } =
+    bookData;
 
   const ratingDisplay = [1, 2, 3, 4, 5].map((r) => {
     return (
@@ -180,7 +180,6 @@ const InputForm = ({ type }) => {
             <input
               id="addimage"
               name="addimage"
-              className="button"
               type="file"
               onChange={(event) =>
                 handleAddImage(event.target.files[0], setBookData)
@@ -245,7 +244,6 @@ const InputForm = ({ type }) => {
           <input
             id="addimage"
             name="addimage"
-            // className="button"
             type="file"
             onChange={(event) =>
               handleAddImage(event.target.files[0], setBookData)
