@@ -2,15 +2,15 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "install": "cd ../client && npm install",
     "client": "cd ../client && npm start",
-    "lint": "cd ../client && eslint --ext,ts,tsx,js,jsx src",
+    "lint": "cd ../client && eslint --ext ts,tsx,js,jsx,src",
     "build": "cd ../client && npm run build",
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "node server.js",
-    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\""
+    "start:dev": "concurrently \"nodemon --ignore 'client/*' \" \"npm run client\""
   },
   "keywords": [],
   "author": "",
