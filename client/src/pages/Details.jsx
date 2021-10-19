@@ -1,6 +1,6 @@
 import { useHistory, useParams } from 'react-router-dom';
 import { useScrollToTop, useGetBookDataOnload } from '../utils/hooks';
-import { deleteBook, getImage } from '../utils/API';
+import { deleteBook } from '../utils/API';
 import '../styles/details.scss';
 
 const Details = () => {
@@ -19,7 +19,7 @@ const Details = () => {
       });
   };
 
-  const { title, author, published, pages, synopsis, image, rating } = bookData;
+  const { title, first, last, published, pages, synopsis, image, rating } = bookData;
 
   const ratingDisplay = [1, 2, 3, 4, 5].map((r) => {
     return (
@@ -34,13 +34,16 @@ const Details = () => {
     <section className="details">
       <div className="details__container">
         <div className="details__bookcover">
-          <img src={getImage(title)} alt={image} />
+          <img 
+          crossOrigin="true"        
+          src={image ? image : 'https://library-project.s3.us-west-1.amazonaws.com/default_book_cover.jpg'}
+          alt={`${title}_book_cover`} />
           <div>{ratingDisplay}</div>
         </div>
 
         <div className="details__info">
           <h2 className="details__info__title">{title}</h2>
-          <h3 id="author">{author}</h3>
+          <h3 id="author">{first} {last}</h3>
           <p>
             <em>Published: {published}</em>
           </p>

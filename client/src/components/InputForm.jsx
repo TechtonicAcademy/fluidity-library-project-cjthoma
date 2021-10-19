@@ -1,8 +1,9 @@
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, useParams } from 'react-router-dom';
-import { editBook, addBook, deleteBook, getImage } from '../utils/API';
+import { editBook, addBook, deleteBook } from '../utils/API';
 import { useGetBookDataOnload } from '../utils/hooks';
+import handleAddImage from '../utils/handleAddImage';
 
 import '../styles/inputForm.scss';
 
@@ -10,9 +11,11 @@ const InputForm = ({ type }) => {
   const { id } = useParams();
   const history = useHistory();
   const { bookData, setBookData } = useGetBookDataOnload(id);
+  const [inputValid, setInputValid] = useState(false);
 
   const titleInputRef = useRef();
-  const authorInputRef = useRef();
+  const firstInputRef = useRef();
+  const lastInputRef = useRef();
   const synopsisInputRef = useRef();
   const publishedInputRef = useRef();
   const pagesInputRef = useRef();
@@ -23,9 +26,13 @@ const InputForm = ({ type }) => {
       ? titleInputRef.current.value
       : bookData.title;
 
-    const author = authorInputRef.current.value
-      ? authorInputRef.current.value
-      : bookData.author;
+    const first = firstInputRef.current.value
+      ? firstInputRef.current.value
+      : bookData.first;
+
+    const last = lastInputRef.current.value
+      ? lastInputRef.current.value
+      : bookData.last;
 
     const synopsis = synopsisInputRef.current.value
       ? synopsisInputRef.current.value
@@ -41,12 +48,13 @@ const InputForm = ({ type }) => {
 
     const { rating } = bookData;
 
-    if (!title || !author || !synopsis || !published || !pages || rating <= 0) {
+    if (!title || !first || !last || !synopsis || !published || !pages || rating <= 0) {
       // eslint-disable-next-line no-alert
       return alert(`
         Invalid Submition. Please fill in all fields. \n
         Title ${title ? '✅' : '❌'} \n
-        Author ${author ? '✅' : '❌'} \n
+        Author First Name ${first ? '✅' : '❌'} \n
+        Author Last Name ${last ? '✅' : '❌'} \n
         Synopsis ${synopsis ? '✅' : '❌'} \n
         Published ${published ? '✅' : '❌'} \n
         Pages ${pages ? '✅' : '❌'} \n
@@ -54,27 +62,13 @@ const InputForm = ({ type }) => {
       `);
     }
 
-    if (type === 'edit') {
-      editBook(id, { title, author, synopsis, published, pages, rating })
-        .then(() => history.push(`/details/${id}`))
-        .catch((error) => {
-          console.log('An error has occured.', error);
-          throw error;
-        });
-    } else {
-      addBook({ title, author, synopsis, published, pages, rating })
-        .then(() => history.push(`/bookshelf`))
-        .catch((error) => {
-          console.log('An error has occurred.', error, title, author, synopsis, published, pages, rating);
-          throw error;
-        });
-    }
-
+    setInputValid(true);
     return setBookData((prevState) => {
       return {
         ...prevState,
         title,
-        author,
+        first,
+        last,
         synopsis,
         published,
         pages,
@@ -82,6 +76,31 @@ const InputForm = ({ type }) => {
       };
     });
   };
+
+  useEffect(() => {
+    if (!inputValid) return;
+    const formData = new FormData();
+    Object.keys(bookData).forEach((key) => {
+      if (key === 'tmpImage') return; // ignore temp image... only used to display user selection
+      formData.append(key, bookData[key]);
+    });
+
+    if (type === 'edit') {
+      editBook(id, formData)
+        .then(() => history.push(`/details/${id}`))
+        .catch((error) => {
+          console.log('An error has occured.', error);
+          throw error;
+        });
+    } else {
+      addBook(formData)
+        .then(() => history.push(`/bookshelf`))
+        .catch((error) => {
+          console.log('An error has occurred.', error, title, author, synopsis, published, pages, rating);
+          throw error;
+        });
+    }
+  }, [inputValid]);
 
   const handleDelete = () => {
     deleteBook(id)
@@ -96,7 +115,8 @@ const InputForm = ({ type }) => {
     setBookData((prevState) => ({ ...prevState, rating: target }));
   };
 
-  const { title, author, published, pages, synopsis, image, rating } = bookData;
+  const { title, first, last, published, pages, synopsis, rating, tmpImage } =
+    bookData;
 
   const ratingDisplay = [1, 2, 3, 4, 5].map((r) => {
     return (
@@ -112,7 +132,7 @@ const InputForm = ({ type }) => {
     <div className="inputForm">
       <form className="inputForm__container">
         <div>
-          <label htmlFor="title" className="edit__container__input">
+          <label htmlFor="title" className="inputForm__container__input">
             <h3>Title</h3>
             <input
               id="title"
@@ -124,33 +144,52 @@ const InputForm = ({ type }) => {
             />
           </label>
 
-          <label htmlFor="author" className="edit__container__input">
-            <h3>Author</h3>
-            <input
-              id="author"
-              name="author"
-              ref={authorInputRef}
-              type="text"
-              placeholder="Author..."
-              defaultValue={author}
-            />
-          </label>
+          <div className="inputForm__wrapper">
+            <label htmlFor="author" className="inputForm__container__input">
+              <h3>Author First</h3>
+              <input
+                id="first_name"
+                name="first_name"
+                ref={firstInputRef}
+                type="text"
+                placeholder="First Name..."
+                defaultValue={first}
+              />
+               <h3>Author Last</h3>
+              <input
+                id="last_name"
+                name="last_name"
+                ref={lastInputRef}
+                type="text"
+                placeholder="Last Name..."
+                defaultValue={last}
+              />
+            </label>
+          </div>
 
           <label
             htmlFor="change_image"
             className="edit__container__addimage edit__container__addimage--mobile"
           >
             <img
-              src={getImage(title)}
-              alt={image}
+              crossOrigin="true"
+              src={tmpImage}
+              alt={`${title ? title : 'default'}_book_cover`}
               style={{ width: 170, height: 235 }}
             />
-            <button className="button" type="button">Change Image</button>
+            <input
+              id="addimage"
+              name="addimage"
+              type="file"
+              onChange={(event) =>
+                handleAddImage(event.target.files[0], setBookData)
+              }
+            />
           </label>
 
           <label
             htmlFor="synposis"
-            className="edit__container__input edit__container__input--synopsis"
+            className="inputForm__container__input inputForm__container__input--synopsis"
           >
             <h3>Synopsis</h3>
             <textarea
@@ -163,8 +202,8 @@ const InputForm = ({ type }) => {
             />
           </label>
 
-          <div className="edit__wrapper">
-            <label htmlFor="published" className="edit__container__input">
+          <div className="inputForm__wrapper">
+            <label htmlFor="published" className="inputForm__container__input">
               <h3>Published</h3>
               <input
                 id="published"
@@ -176,7 +215,7 @@ const InputForm = ({ type }) => {
               />
             </label>
 
-            <label htmlFor="pages" className="edit__container__input">
+            <label htmlFor="pages" className="inputForm__container__input">
               <h3>Pages</h3>
               <input
                 id="pages"
@@ -189,22 +228,28 @@ const InputForm = ({ type }) => {
             </label>
           </div>
 
-          <div className="edit__container__input">
+          <div className="inputForm__container__input">
             <h3>Rating</h3>
             <div>{ratingDisplay}</div>
           </div>
         </div>
 
-        <div className="inputForm__container__addimage">
+        <label htmlFor="addimage" className="inputForm__container__addimage">
           <img
-            src={getImage(title)}
-            alt={image}
+            crossOrigin="true"
+            src={tmpImage}
+            alt={`${title ? title : 'default'}_book_cover`}
             style={{ width: 170, height: 235 }}
           />
-          <button className="button" type="button">
-            Change Image
-          </button>
-        </div>
+          <input
+            id="addimage"
+            name="addimage"
+            type="file"
+            onChange={(event) =>
+              handleAddImage(event.target.files[0], setBookData)
+            }
+          />
+        </label>
       </form>
 
       <form className="inputForm__edit">
