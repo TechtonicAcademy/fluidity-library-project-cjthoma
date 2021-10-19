@@ -13,7 +13,7 @@ export const getBook = (id) => {
 };
 
 export const searchBook = (searchTerm) => {
-  return axios.get(apiRoute + `/search/${searchTerm}`);
+  return axios.get(apiRoute + `search/${searchTerm}`);
 };
 
 export const addBook = (bookData) => {
