@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const multer = require('multer');
-const bookController = require('../../controlllers/bookController');
+const bookController = require('../../controllers/bookController');
 
 const upload = multer({
   limits: {

@@ -1,7 +1,8 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable camelcase */
 const AWS = require('aws-sdk');
-const { Sequelize, Author, Book } = require('../models');
+const { Op } = require('sequelize');
+const { Author, Book } = require('../models');
 
 AWS.config.update({ 
   region: process.env.BUCKET_REGION,
@@ -43,10 +44,10 @@ module.exports = {
     Book.findAll({
       include: [Author],
       where: {
-        [Sequelize.Op.or]: [
-          { title: { [Sequelize.Op.substring]: `%${searchTerm}%` } },
-          { '$Author.first_name$': { [Sequelize.Op.substring]: `%${searchTerm}%` } },
-          { '$Author.last_name$': { [Sequelize.Op.substring]: `%${searchTerm}%` } }
+        [Op.or]: [
+          { title: { [Op.substring]: `%${searchTerm}%` } },
+          { '$Author.first_name$': { [Op.substring]: `%${searchTerm}%` } },
+          { '$Author.last_name$': { [Op.substring]: `%${searchTerm}%` } }
         ],
       },
     }).then((response) => {
